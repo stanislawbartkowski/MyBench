@@ -1,0 +1,122 @@
+ENVCONF=env.conf
+
+# =========================
+# logging
+# =========================
+
+logfile() {
+    local -r MESS="$1"
+}
+
+log() {
+    local -r MESS="$1"
+    logfile "$MESS"
+    echo $MESS
+}
+
+logfail() {
+    log "$1"
+    exit 4
+}
+
+execute_withlog() {
+    local -r CMD="$@"
+    log "$CMD"
+    eval $CMD
+}
+
+# ========================
+# misc script utilties
+# ========================
+
+required_var() {
+    local -r VARIABLE=$1
+    [ -z "${!VARIABLE}" ] && logfail "Need to set environment variable $VARIABLE"    
+}
+
+required_listofvars() {
+    while true; do
+        var=$1
+        [ -z "$var" ] && break
+        required_var $var
+        shift
+    done
+}
+
+required_par() {
+    local -r PAR=$1
+    [ -z "${!PAR}" ] && logfail "$PAR not set in $ENVCONF"
+    [ "${!PAR}" == "-" ] && logfail "$PAR not set in $ENVCONF"
+}
+
+required_listofpars() {
+    while true; do
+        par=$1
+        [ -z "$par" ] && break
+        required_par $par
+        shift
+    done
+}
+
+
+existfile() {
+    local -r FILENAME=$1
+    [ -f $FILENAME ] || logfail "$FILENAME does not exist"
+}
+
+existexefile() {
+    local -r FILENAME=$1
+    [ -x $FILENAME ] || logfail "$FILENAME is not executable"
+}
+
+existdir() {
+    local -r DIRNAME=$1
+    [ -d $DIRNAME ] || logfail "$DIRNAME does not exist"
+}
+
+
+setenv() {
+    source $ENVRC
+}
+
+onthelist() {
+    local -r word=$1
+    local -r list=$2
+    for w in ${list//,/ }; do
+        [ $w == $word ] &&  return
+    done
+    logfail "$word is not on the list $list"
+}
+
+getconfvar() {
+    declare -A arr
+
+    # read file line by line. Field separator is "="
+    while IFS='=' read -r k v; do
+        [ -z "$k" ] && continue
+        [ -z "$v" ] && continue
+        arr[$k]=$v
+    done <$ENVCONF
+    res=""
+    while true; do
+        key=$1
+        [ -z "$key" ] && break
+        val=${arr[$BENCHSIZE.$key]}
+        if [ -z "$val" ]; then val=${arr[$key]}; fi
+        if [ -z "$val" ]; then logfile "$1 variable not found in $ENVCONF"; val="-";  fi
+        res="$res $val"
+        shift
+    done
+    echo $res
+}
+
+
+# ==========================
+# Hadoop functions
+# ==========================
+
+rmr_hdfs() {
+    local -r DIR=$1
+    local CMD="hdfs dfs -rm -r -f -skipTrash $DIR"
+    execute_withlog ${CMD}
+}

@@ -1,0 +1,8 @@
+# list of all tests
+TESTLIST=wordcount
+
+# DATA SIZE
+LISTSIZE=tiny
+BENCHSIZE=tiny
+
+TMPOUTPUTDIR=/tmp/bench/outputdir
