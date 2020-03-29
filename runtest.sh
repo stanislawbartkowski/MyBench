@@ -18,7 +18,8 @@ SANDBOX=sandbox
 
 verifyenv() {
     log "Check environment"
-    required_listofvars TESTLIST SANDBOX DIRTEST TMPOUTPUTDIR LISTSIZE BENCHSIZE
+    required_listofvars TESTLIST SANDBOX DIRTEST TMPOUTPUTDIR LISTSIZE BENCHSIZE TMPINPUTDIR
+    required_listofvars HADOOPEXAMPLES
     # check if SIZE on the list
     onthelist $BENCHSIZE $LISTSIZE
 

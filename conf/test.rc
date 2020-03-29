@@ -5,4 +5,7 @@ TESTLIST=wordcount
 LISTSIZE=tiny
 BENCHSIZE=tiny
 
+TMPINPUTDIR=/tmp/bench/inputdir
 TMPOUTPUTDIR=/tmp/bench/outputdir
+
+HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar

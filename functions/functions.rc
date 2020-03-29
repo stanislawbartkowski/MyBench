@@ -23,6 +23,11 @@ execute_withlog() {
     local -r CMD="$@"
     log "$CMD"
     eval $CMD
+    if [ $? -ne 0 ]; then
+        # log CMD again, it can preceded by bunch of logs
+        log "$CMD"
+        logfail "Job failed"
+    fi
 }
 
 # ========================
@@ -57,6 +62,17 @@ required_listofpars() {
         shift
     done
 }
+
+log_listofpars() {
+    while true; do
+        par=$1
+        [ -z "$par" ] && break
+        val=${!par}
+        log "$par=$val"
+        shift
+    done
+}
+
 
 
 existfile() {
@@ -119,4 +135,14 @@ rmr_hdfs() {
     local -r DIR=$1
     local CMD="hdfs dfs -rm -r -f -skipTrash $DIR"
     execute_withlog ${CMD}
+}
+
+yarn_job() {
+    local CMD="yarn $@"
+    execute_withlog ${CMD}
+}
+
+yarn_job_examples() {
+    local CMD="jar $HADOOPEXAMPLES $@"
+    yarn_job ${CMD}
 }
