@@ -1,4 +1,5 @@
 ENVCONF=env.conf
+REPDEL='|'
 
 # =========================
 # logging
@@ -28,6 +29,75 @@ execute_withlog() {
         log "$CMD"
         logfail "Job failed"
     fi
+}
+
+# =============================
+# temporary files
+# =============================
+
+crtemp() {
+  local -r TMP=`mktemp`
+  echo $TMP >>$TMPSTORE
+  echo $TMP
+}
+
+# =============================
+# different report functions
+# =============================
+
+getsec() {
+  echo `date  +"%s"`
+}
+
+
+calculatesec() {
+  local -r before=$1
+  local -r after=`getsec`
+  echo $(expr $after - $before)
+}
+
+getdate() {
+    echo `date +"%Y-%m-%d %H-%M-%S"`
+}
+
+
+
+tsp() {
+    local -r MESS="$1"
+    local -r LEN=$2
+    local -r OUT=`printf "%-${LEN}s $REPDEL" "$MESS"`
+    echo "$OUT"
+}
+
+NAMELEN=20
+DATELEN=20
+SECLEN=10
+
+
+printline() {
+    echo -n $REPDEL >>$REPORTFILE
+    while true; do
+        [ -z "$1" ] && break
+        O=`tsp "$1" $2`
+        echo -n "$O" >>$REPORTFILE
+        shift 2
+    done
+    echo >>$REPORTFILE
+}
+
+testbeg() {
+    local -r subtest=$1
+    if [ ! -f $REPORTFILE ]; then
+        printline TEST $NAMELEN SUBTEST $NAMELEN START $DATELEN END $DATELEN TIME/SEC $SECLEN
+    fi 
+    local -r BEG="$subtest,`getdate`,`getsec`"
+    echo $BEG
+}
+
+testend() {
+    IFS=',' read -r subtest begdate begsec <<<$@
+#    cho "$REPDEL $TESTNAME $REPDEL $subtest $REPDEL $begdate $REPDEL `getdate` $REPDEL `calculatesec $begsec` $REPDEL" >> $REPORTFILE
+    printline $TESTNAME $NAMELEN $subtest $NAMELEN "$begdate" $DATELEN "`getdate`" $DATELEN "`calculatesec $begsec`" $SECLEN
 }
 
 # ========================
@@ -145,4 +215,24 @@ yarn_job() {
 yarn_job_examples() {
     local CMD="jar $HADOOPEXAMPLES $@"
     yarn_job ${CMD}
+}
+
+hivesql() {
+    local CMD="beeline -e \"$@\""
+    execute_withlog ${CMD}
+}
+
+pigscript() {
+    local CMD="pig -f $1"
+    execute_withlog ${CMD}
+}
+
+sparkshell() {
+    local CMD="echo :quit | spark-shell -i $@"
+    execute_withlog ${CMD}
+}
+
+sparksql() {
+    local CMD="echo exit | spark-sql -i $@"
+    execute_withlog ${CMD}
 }

@@ -11,6 +11,22 @@ DIRTEST=tests
 DISABLE=disable
 SANDBOX=sandbox
 
+export TMPSTORE
+
+setuplogging() {
+    REPORTDIR=$PWD/reports
+    mkdir -p $REPORTDIR
+    export REPORTFILE=$REPORTDIR/$BENCHSIZE.result
+
+    # temporary files
+    declare -g TMPSTORE=`mktemp`
+}
+
+# remove all tempoary files, should be called in the end
+removetemp() {
+  while read rmfile;  do rm $rmfile; done <$TMPSTORE
+  rm $TMPSTORE
+}
 
 # ====================
 # verify environment
@@ -48,13 +64,13 @@ preparesandbox() {
 }
 
 runsingletest() {
-    local -r test=$1
-    log "Execute $test"
+    export TESTNAME=$1
+    log "Execute $TESTNAME"
     cd $SANDBOX
     if ./run.sh; then 
-        log "$test passed"
+        log "$TESTNAME passed"
     else     
-        logfail "$test failed"
+        logfail "$TESTNAME failed"
     fi
     cd $BASEDIR
 }
@@ -69,4 +85,8 @@ runtests() {
 }
 
 verifyenv
+setuplogging
+
 runtests
+
+removetemp
