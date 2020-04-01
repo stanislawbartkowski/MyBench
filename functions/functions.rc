@@ -60,8 +60,6 @@ getdate() {
     echo `date +"%Y-%m-%d %H-%M-%S"`
 }
 
-
-
 tsp() {
     local -r MESS="$1"
     local -r LEN=$2
@@ -103,6 +101,21 @@ testend() {
 # ========================
 # misc script utilties
 # ========================
+
+remove_tmpoutput() {
+  rmr_hdfs $TMPOUTPUTDIR
+}
+
+remove_tmpoutput1() {
+  rmr_hdfs $TMPOUTPUT1DIR
+}
+
+
+remove_tmp() {
+  rmr_hdfs $TMPINPUTDIR
+  remove_tmpoutput
+  remove_tmpoutput1
+}
 
 required_var() {
     local -r VARIABLE=$1

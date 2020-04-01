@@ -5,3 +5,15 @@
 |wordcount            |pigwordcount         |2020-03-30 14-13-01  |2020-03-30 14-13-32  |31         |
 |wordcount            |sparkwordcount       |2020-04-01 23-28-02  |2020-04-01 23-28-54  |52         |
 |wordcount            |sparksqlwordcount    |2020-04-01 23-44-13  |2020-04-01 23-45-28  |75         |
+|wordcount            |randomtext           |2020-04-01 23-48-28  |2020-04-01 23-49-17  |49         |
+|wordcount            |wordcountmapreduce   |2020-04-01 23-49-17  |2020-04-01 23-50-29  |72         |
+|wordcount            |hivewordcount        |2020-04-01 23-50-29  |2020-04-01 23-52-32  |123        |
+|wordcount            |pigwordcount         |2020-04-01 23-52-32  |2020-04-01 23-53-05  |33         |
+|wordcount            |sparkwordcount       |2020-04-01 23-53-09  |2020-04-01 23-53-55  |46         |
+|wordcount            |sparksqlwordcount    |2020-04-01 23-54-00  |2020-04-01 23-54-50  |50         |
+|terasort             |teragen              |2020-04-02 00-06-33  |2020-04-02 00-07-04  |31         |
+|terasort             |teragen              |2020-04-02 00-13-42  |2020-04-02 00-14-14  |32         |
+|terasort             |terasort             |2020-04-02 00-14-14  |2020-04-02 00-14-58  |44         |
+|terasort             |terasort             |2020-04-02 00-27-23  |2020-04-02 00-28-41  |78         |
+|terasort             |teragen              |2020-04-02 00-32-29  |2020-04-02 00-32-53  |24         |
+|terasort             |terasort             |2020-04-02 00-32-53  |2020-04-02 00-34-14  |81         |

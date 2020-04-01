@@ -52,7 +52,7 @@ EOF
 
 sparkwordcount() {
   local -r TMP=`crtemp`
-  rmr_hdfs $TMPOUTPUTDIR
+  remove_tmpoutput
   local -r BEGTEST=`testbeg sparkwordcount`
   read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
   required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
@@ -98,8 +98,7 @@ EOF
 }
 
 run() {
-  rmr_hdfs $TMPOUTPUTDIR
-  rmr_hdfs $TMPINPUTDIR
+  remove_tmp
 
   randomtext
 
@@ -107,9 +106,10 @@ run() {
   runhivewordcount
   runpigwordcount
   sparkwordcount
+  sparksqlwordcount
 }
 
-# run
-sparksqlwordcount
+run
+#sparksqlwordcount
 
 exit 0

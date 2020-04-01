@@ -1,5 +1,6 @@
 # list of all tests
-TESTLIST=wordcount
+#TESTLIST=wordcount,terasort
+TESTLIST=terasort
 
 # DATA SIZE
 LISTSIZE=tiny
@@ -7,5 +8,7 @@ BENCHSIZE=tiny
 
 TMPINPUTDIR=/tmp/bench/inputdir
 TMPOUTPUTDIR=/tmp/bench/outputdir
+TMPOUTPUT1DIR=/tmp/bench/output1dir
 
 HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
+
