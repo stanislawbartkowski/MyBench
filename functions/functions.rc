@@ -94,7 +94,6 @@ testbeg() {
 
 testend() {
     IFS=',' read -r subtest begdate begsec <<<$@
-#    cho "$REPDEL $TESTNAME $REPDEL $subtest $REPDEL $begdate $REPDEL `getdate` $REPDEL `calculatesec $begsec` $REPDEL" >> $REPORTFILE
     printline $TESTNAME $NAMELEN $subtest $NAMELEN "$begdate" $DATELEN "`getdate`" $DATELEN "`calculatesec $begsec`" $SECLEN
 }
 
@@ -202,7 +201,14 @@ getconfvar() {
         [ -z "$key" ] && break
         val=${arr[$BENCHSIZE.$key]}
         if [ -z "$val" ]; then val=${arr[$key]}; fi
-        if [ -z "$val" ]; then logfile "$1 variable not found in $ENVCONF"; val="-";  fi
+
+        # check global variable
+        if [ -z "$val" ]; then 
+          # replace . with _
+          read EVAR <<< `echo $key | tr . _`
+          val="${!EVAR}"        
+        fi
+        if [ -z "$val" ]; then logfile "$1 variable not found in $ENVCONF or $EVAR does not exist"; val="-";  fi
         res="$res $val"
         shift
     done
@@ -241,12 +247,17 @@ pigscript() {
 }
 
 sparkshell() {
-    local CMD="echo :quit | spark-shell -i $@"
+    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
+    required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+    log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+
+    local CMD="echo :quit | spark-shell --master yarn -i --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $@"
     execute_withlog ${CMD}
 }
 
 sparksql() {
-    local CMD="echo exit | spark-sql -i $@"
+
+    local CMD="echo exit | spark-sql --master yarn -i $@"
     execute_withlog ${CMD}
 }
 

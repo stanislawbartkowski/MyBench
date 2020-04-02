@@ -1,6 +1,6 @@
 # list of all tests
-#TESTLIST=wordcount,terasort,dsfio
-TESTLIST=dsfio
+#TESTLIST=wordcount,terasort,dsfio,als
+TESTLIST=als
 
 # DATA SIZE
 LISTSIZE=tiny
@@ -13,5 +13,11 @@ TMPOUTPUT1DIR=/tmp/bench/output1dir
 JUNITJAR=/usr/hdp/current/hbase-client/lib/junit-4.12.jar
 HADOOPMAPREDUCETEST=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient-tests.jar
 HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
+
+spark_executor_cores=2
+spark_driver_cores=2
+spark_driver_memory=1024M
+spark_num_executors=2
+
 
 
