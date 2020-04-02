@@ -249,3 +249,8 @@ sparksql() {
     local CMD="echo exit | spark-sql -i $@"
     execute_withlog ${CMD}
 }
+
+mapredtest() {
+    local CMD="HADOOP_CLASSPATH=$JUNITJAR; yarn jar $HADOOPMAPREDUCETEST $@"
+    execute_withlog ${CMD}
+}

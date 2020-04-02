@@ -35,7 +35,8 @@ removetemp() {
 verifyenv() {
     log "Check environment"
     required_listofvars TESTLIST SANDBOX DIRTEST TMPOUTPUTDIR LISTSIZE BENCHSIZE TMPINPUTDIR
-    required_listofvars HADOOPEXAMPLES
+
+    required_listofvars HADOOPEXAMPLES JUNITJAR HADOOPMAPREDUCETEST
     # check if SIZE on the list
     onthelist $BENCHSIZE $LISTSIZE
 

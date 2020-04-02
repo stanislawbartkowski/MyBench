@@ -1,6 +1,6 @@
 # list of all tests
-#TESTLIST=wordcount,terasort
-TESTLIST=terasort
+#TESTLIST=wordcount,terasort,dsfio
+TESTLIST=dsfio
 
 # DATA SIZE
 LISTSIZE=tiny
@@ -10,5 +10,8 @@ TMPINPUTDIR=/tmp/bench/inputdir
 TMPOUTPUTDIR=/tmp/bench/outputdir
 TMPOUTPUT1DIR=/tmp/bench/output1dir
 
+JUNITJAR=/usr/hdp/current/hbase-client/lib/junit-4.12.jar
+HADOOPMAPREDUCETEST=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient-tests.jar
 HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
+
 
