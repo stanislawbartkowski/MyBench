@@ -255,8 +255,17 @@ sparkshell() {
     execute_withlog ${CMD}
 }
 
-sparksql() {
+sparkbenchjar() {
+    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
+    required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+    log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
 
+
+    local CMD="spark-submit --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
+    execute_withlog ${CMD}
+}
+
+sparksql() {
     local CMD="echo exit | spark-sql --master yarn -i $@"
     execute_withlog ${CMD}
 }

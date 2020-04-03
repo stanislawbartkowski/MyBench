@@ -52,43 +52,22 @@ EOF
 }
 
 alsrun() {
-    local -r TMP=`crtemp`
+    read -r NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS <<< `getconfvar als.users als.products als.sparsity als.implicitprefs`
+    required_listofpars NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS
+    log_listofpars NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS
 
-    cat << EOF | cat >$TMP
+    OPTIONS="--numUsers $NUM_USERS_ALS \
+            --numProducts $NUM_PRODUCTS_ALS
+            --implicitPrefs $IMPLICITPREFS_ALS\
+            "
 
-import scala.collection.mutable
-
-import org.apache.log4j.{Level, Logger}
-
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.mllib.recommendation.{ALS, MatrixFactorizationModel, Rating}
-import org.apache.spark.rdd.RDD
-import org.apache.spark.mllib.linalg.SparseVector
-
- case class Params(
-      dataPath: String = null,
-      numUsers: Int = 0,
-      numProducts: Int = 0,
-      kryo: Boolean = false,
-      numIterations: Int = 20,
-      lambda: Double = 1.0,
-      rank: Int = 10,
-      numRecommends: Int = 20,
-      numUserBlocks: Int = -1,
-      numProductBlocks: Int = -1,
-      implicitPrefs: Boolean = false)
-
-
-EOF
-  sparkshell $TMP
-
+    sparkbenchjar --dataPath $TMPINPUTDIR $OPTIONS
 }
 
 run() {
     remove_tmp
     prepare
-
 }
 
-#
+#run
 alsrun
