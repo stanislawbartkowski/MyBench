@@ -1,6 +1,5 @@
 # list of all tests
-#TESTLIST=wordcount,terasort,dsfio,als
-TESTLIST=als
+TESTLIST=wordcount,terasort,dsfio,als
 
 # DATA SIZE
 LISTSIZE=tiny

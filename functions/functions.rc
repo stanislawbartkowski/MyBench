@@ -175,6 +175,7 @@ existdir() {
 
 setenv() {
     source $ENVRC
+    source $CUSTOMRC
 }
 
 onthelist() {

@@ -3,6 +3,7 @@ BASEDIR=`dirname $0`
 BASEDIR=`realpath $BASEDIR`
 export FUNCTIONSRC=$BASEDIR/functions/functions.rc
 export ENVRC=$BASEDIR/conf/test.rc
+export CUSTOMRC=$BASEDIR/conf/custom.rc
 
 source $FUNCTIONSRC
 setenv
