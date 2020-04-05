@@ -7,6 +7,7 @@ randomtext() {
   read -r SIZE MAPS <<< `getconfvar genword.size genword.maps`
   required_listofpars SIZE MAPS
   log_listofpars SIZE MAPS
+  remove_tmp
 
   local -r BEGTEST=`testbeg randomtext`
   yarn_job_examples randomtextwriter  -D mapreduce.randomtextwriter.totalbytes=$SIZE -D mapreduce.randomtextwriter.bytespermap=$(( $SIZE / $MAPS )) $TMPINPUTDIR
@@ -26,7 +27,7 @@ wordcountmapreduce() {
 runhivewordcount() {
   local -r BEGTEST=`testbeg hivewordcount`
   hivesql "DROP TABLE IF EXISTS $WORDT"
-  hivesql "CREATE TABLE $WORDT (line string) STORED AS SEQUENCEFILE LOCATION '${TMPINPUTDIR}'"
+  hivesql "CREATE EXTERNAL TABLE $WORDT (line string) STORED AS SEQUENCEFILE LOCATION '${TMPINPUTDIR}'"
   hivesql "with xx as (select explode(split(line,' ')) as word from $WORDT) select word,count(*) from xx group by word"
   testend $BEGTEST
 }
@@ -88,7 +89,7 @@ sparksqlwordcount() {
   cat << EOF | cat >$TMP
 
 DROP TABLE IF EXISTS $WORDT;
-CREATE TABLE $WORDT (line string) STORED AS SEQUENCEFILE LOCATION '${TMPINPUTDIR}';
+CREATE EXTERNAL TABLE $WORDT (line string) STORED AS SEQUENCEFILE LOCATION '${TMPINPUTDIR}';
 with xx as (select explode(split(line,' ')) as word from $WORDT) select word,count(*) from xx group by word;
 
 EOF
@@ -98,7 +99,6 @@ EOF
 }
 
 run() {
-  remove_tmp
 
   randomtext
 
@@ -109,7 +109,12 @@ run() {
   sparksqlwordcount
 }
 
+test() {
+  randomtext
+  wordcountmapreduce
+  runhivewordcount
+}
+
 run
-#sparksqlwordcount
 
 exit 0

@@ -13,11 +13,11 @@ JUNITJAR=/usr/hdp/current/hbase-client/lib/junit-4.12.jar
 HADOOPMAPREDUCETEST=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient-tests.jar
 HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
 
-BENCHMARKJAR=/home/bench/MyBench/BenchmarkProj/target/scala-2.11/BenchmarkProj-assembly-0.1.jar
+BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchmarkProj-assembly-0.1.jar
 
 spark_executor_cores=2
 spark_driver_cores=2
-spark_driver_memory=1024M
+spark_driver_memory=2g
 spark_num_executors=2
 
 
