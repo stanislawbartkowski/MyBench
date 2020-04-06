@@ -83,20 +83,18 @@ object AvlExample {
 
   private def run(params: Params): Unit = {
     val conf = new SparkConf().setAppName(s"ALS with $params")
+    Common.setMaster(conf)
     if (params.kryo) {
       conf.registerKryoClasses(Array(classOf[mutable.BitSet], classOf[Rating]))
         .set("spark.kryoserializer.buffer", "8m")
     }
     val sc = new SparkContext(conf)
+    Common.setCheckPoint(sc)
 
     Logger.getRootLogger.setLevel(Level.WARN)
 
-    val numUsers = params.numUsers
-    val numProducts = params.numProducts
-    val numRecommends = params.numRecommends
-    val implicitPrefs = params.implicitPrefs
-
     val rawdata: RDD[SparseVector] = sc.objectFile(params.dataPath)
+
     val data: RDD[Rating] = Vector2Rating(rawdata)
     val splits = data.randomSplit(Array(0.7, 0.3))
     val (trainingData, testData) = (splits(0), splits(1))
