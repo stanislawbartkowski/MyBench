@@ -28,50 +28,43 @@ import org.apache.spark.mllib.linalg.SparseVector
 
 import org.rogach.scallop._
 
-class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
-  val apples = opt[Int](required = true)
-  val bananas = opt[Int]()
-  val name = trailArg[String]()
-  verify()
-}
+object AvlExample {
 
-class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
-  banner("""
+  private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
+    banner("""
     AVL example
 
     Example: spark-submit target/scala-2.11/benchmarkproj_2.11-0.1.jar  --dataPath <inputDir>
 
     For usage see below:
     """)
-  private val odataPath = opt[String]("dataPath",required = true)
-  private val onumUsers = opt[Int]("numUsers")
-  private val onumProducts = opt[Int]("numProducts")
-  private val okryo = opt[Boolean]("kryo")
-  private val onumIterations = opt[Int]("numIterations")
-  private val olambda = opt[Double]("lambda")
-  private val orank = opt[Int]("rank")
-  private val onumRecommends = opt[Int]("numRecommends")
-  private val onumUserBlocks = opt[Int]("numUserBlocks")
-  private val onumProductBlocks = opt[Int]("numProductBlocks")
-  private val oimplicitPrefs = opt[Boolean]("implicitPrefs")
-  private val help = opt[Boolean]("help", noshort = true, descr = "Show this message")
-  verify()
+    private val odataPath = opt[String]("dataPath",required = true)
+    private val onumUsers = opt[Int]("numUsers")
+    private val onumProducts = opt[Int]("numProducts")
+    private val okryo = opt[Boolean]("kryo")
+    private val onumIterations = opt[Int]("numIterations")
+    private val olambda = opt[Double]("lambda")
+    private val orank = opt[Int]("rank")
+    private val onumRecommends = opt[Int]("numRecommends")
+    private val onumUserBlocks = opt[Int]("numUserBlocks")
+    private val onumProductBlocks = opt[Int]("numProductBlocks")
+    private val oimplicitPrefs = opt[Boolean]("implicitPrefs")
+    private val help = opt[Boolean]("help", noshort = true, descr = "Show this message")
+    verify()
 
-  val dataPath : String = odataPath.getOrElse("")
-  val numUsers: Int = onumUsers.getOrElse(0)
-  val numProducts: Int = onumProducts.getOrElse(0);
-  val kryo: Boolean = okryo.getOrElse(false)
-  val numIterations: Int = onumIterations.getOrElse(20)
-  val lambda: Double = olambda.getOrElse(1.0)
-  val rank: Int = orank.getOrElse(10)
-  val numRecommends: Int = onumRecommends.getOrElse(20)
-  val numUserBlocks: Int = onumUserBlocks.getOrElse(-1)
-  val numProductBlocks: Int = onumProductBlocks.getOrElse(-1)
-  val implicitPrefs: Boolean = oimplicitPrefs.getOrElse(false)
-}
+    val dataPath : String = odataPath.getOrElse("")
+    val numUsers: Int = onumUsers.getOrElse(0)
+    val numProducts: Int = onumProducts.getOrElse(0);
+    val kryo: Boolean = okryo.getOrElse(false)
+    val numIterations: Int = onumIterations.getOrElse(20)
+    val lambda: Double = olambda.getOrElse(1.0)
+    val rank: Int = orank.getOrElse(10)
+    val numRecommends: Int = onumRecommends.getOrElse(20)
+    val numUserBlocks: Int = onumUserBlocks.getOrElse(-1)
+    val numProductBlocks: Int = onumProductBlocks.getOrElse(-1)
+    val implicitPrefs: Boolean = oimplicitPrefs.getOrElse(false)
+  }
 
-
-object AvlExample {
 
 
   def main(args: Array[String]) {

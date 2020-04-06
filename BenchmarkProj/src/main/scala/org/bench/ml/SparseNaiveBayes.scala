@@ -30,25 +30,6 @@ import org.apache.hadoop.io.Text
 import org.apache.spark.SparkContext._
 import org.rogach.scallop.ScallopConf
 
-private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
-  banner("""
-    SparseNaiveBayes: an example naive Bayes app for LIBSVM data.
-
-    Example: spark-submit target/scala-2.11/benchmarkproj_2.11-0.1.jar  --dataPath <inputDir>
-
-    For usage see below:
-    """)
-  private val odataPath = opt[String]("dataPath",required = true)
-  private val ominPartitions =  opt[Int]("numPartitions")
-  private val onumFeatures  = opt[Int]("numFeatures")
-  private val olambda = opt[Double]("lambda")
-  verify()
-  val dataPath : String = odataPath.getOrElse("")
-  val  minPartitions: Int = ominPartitions.getOrElse(0)
-  val numFeatures: Int = onumFeatures.getOrElse(-1)
-  val lambda: Double = olambda.getOrElse(1.0)
-}
-
 
 /**
  * An example naive Bayes app. Run with
@@ -58,6 +39,25 @@ private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
  * If you use it as a template to create your own app, please use `spark-submit` to submit your app.
  */
 object SparseNaiveBayes {
+
+  private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
+    banner("""
+    SparseNaiveBayes: an example naive Bayes app for LIBSVM data.
+
+    Example: spark-submit target/scala-2.11/benchmarkproj_2.11-0.1.jar  --dataPath <inputDir>
+
+    For usage see below:
+    """)
+    private val odataPath = opt[String]("dataPath",required = true)
+    private val ominPartitions =  opt[Int]("numPartitions")
+    private val onumFeatures  = opt[Int]("numFeatures")
+    private val olambda = opt[Double]("lambda")
+    verify()
+    val dataPath : String = odataPath.getOrElse("")
+    val  minPartitions: Int = ominPartitions.getOrElse(0)
+    val numFeatures: Int = onumFeatures.getOrElse(-1)
+    val lambda: Double = olambda.getOrElse(1.0)
+  }
 
 
   def main(args: Array[String]) {
