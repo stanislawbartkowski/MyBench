@@ -2,6 +2,26 @@ source $FUNCTIONSRC
 setenv
 
 prepare() {
+
+  local -r BEGTEST=`testbeg prepare`
+
+  read -r NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS <<< `getconfvar als.users als.products als.sparsity als.implicitprefs`
+  required_listofpars NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS
+  log_listofpars NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS
+  [ $IMPLICITPREFS_ALS == "true" ] && IMPLICIT="--implicitPrefs"
+
+  OPTIONS="--numUsers $NUM_USERS_ALS \
+           --numProducts $NUM_PRODUCTS_ALS $IMPLICIT \
+           --sparsity $SPARSITY_ALS
+          "
+
+  sparkbenchjar RatingDataGenerator --dataPath $TMPINPUTDIR $OPTIONS
+
+  testend $BEGTEST
+
+}
+
+old_prepare() {
   local -r TMP=`crtemp`
   read -r NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS <<< `getconfvar als.users als.products als.sparsity als.implicitprefs`
   required_listofpars NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS
@@ -80,7 +100,7 @@ alsrun() {
             --lambda $LAMBDA_ALS
             "
 
-    sparkbenchjar --dataPath $TMPINPUTDIR $OPTIONS
+    sparkbenchjar AvlExample --dataPath $TMPINPUTDIR $OPTIONS
 
     testend $BEGTEST
 }
@@ -91,5 +111,11 @@ run() {
     alsrun
 }
 
-run
-#alsrun
+test() {
+#    remove_tmp
+#    prepare
+    alsrun
+}
+
+# run
+test

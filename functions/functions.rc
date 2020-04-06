@@ -257,12 +257,13 @@ sparkshell() {
 }
 
 sparkbenchjar() {
+    local -r CLASS=$1
+    shift
     read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
     required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
     log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
 
-
-    local CMD="spark-submit --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
+    local CMD="spark-submit --class org.bench.ml.$CLASS --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
     execute_withlog ${CMD}
 }
 
@@ -272,6 +273,6 @@ sparksql() {
 }
 
 mapredtest() {
-    local CMD="HADOOP_CLASSPATH=$JUNITJAR; yarn jar $HADOOPMAPREDUCETEST $@"
+    local CMD="HADOOP_CLASSPATH=$JUNITJAR yarn jar $HADOOPMAPREDUCETEST $@"
     execute_withlog ${CMD}
 }
