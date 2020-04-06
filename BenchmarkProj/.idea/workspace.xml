@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/mr/AvlExample.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/Common.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/mr/Common.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/RatingDataGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/mr/RatingDataGenerator.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,8 +173,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4758065909140" />
-        <entry key="$PROJECT_DIR$/build.sbt" value="2503445051" />
+        <entry key="$PROJECT_DIR$/build.sbt" value="380747189" />
         <entry key="$PROJECT_DIR$/project/assembly.sbt" value="3441400446" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="1026143456" />
       </map>
@@ -296,22 +291,22 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/mr/AvlExample.scala</url>
+          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
           <line>84</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/mr/AvlExample.scala</url>
+          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
           <line>114</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/mr/AvlExample.scala</url>
+          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
           <line>103</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/bench/mr/DataGen.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/org/bench/ml/DataGen.java</url>
           <line>44</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
