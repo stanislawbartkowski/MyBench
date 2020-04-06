@@ -21,7 +21,6 @@ package org.bench.ml
  * Copied from org.apache.spark.examples.mllib.SparkNaiveBayes
  */
 
-import org.apache.log4j.{Level, Logger}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.storage.StorageLevel
@@ -31,7 +30,7 @@ import org.apache.hadoop.io.Text
 import org.apache.spark.SparkContext._
 import org.rogach.scallop.ScallopConf
 
-class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
+private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
   banner("""
     SparseNaiveBayes: an example naive Bayes app for LIBSVM data.
 
