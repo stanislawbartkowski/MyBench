@@ -117,5 +117,5 @@ test() {
     alsrun
 }
 
-# run
-test
+run
+#test
