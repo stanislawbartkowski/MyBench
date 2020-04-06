@@ -3,7 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/BayesData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/BayesData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/Counters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/Counters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/DataGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/DataGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/DataOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/DataOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/Dummy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/Dummy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/HiveData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/HiveData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/HtmlCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/HtmlCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/IndexedMapFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/IndexedMapFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/JoinBytesInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/JoinBytesInt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/PagerankData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/PagerankData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/RawData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/RawData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/References.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/References.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/Visit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/Visit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/ZipfCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/ZipfCore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/bench/ml/Zipfian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/bench/mr/Zipfian.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/Common.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/Common.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/RatingDataGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/RatingDataGenerator.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,12 +97,12 @@
   </component>
   <component name="RunManager" selected="Application.DataGen">
     <configuration name="AvlExample" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.AvlExample" />
+      <option name="MAIN_CLASS_NAME" value="org.bench.mr.AvlExample" />
       <module name="BenchmarkProj" />
       <option name="PROGRAM_PARAMETERS" value="--dataPath=input" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="PATTERN" value="org.bench.mr.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,11 +111,11 @@
       </method>
     </configuration>
     <configuration name="DataGen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.DataGen" />
+      <option name="MAIN_CLASS_NAME" value="org.bench.mr.DataGen" />
       <module name="BenchmarkProj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="PATTERN" value="org.bench.mr.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -118,12 +136,12 @@
       </method>
     </configuration>
     <configuration name="RatingDataGenerator" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.RatingDataGenerator" />
+      <option name="MAIN_CLASS_NAME" value="org.bench.mr.RatingDataGenerator" />
       <module name="BenchmarkProj" />
       <option name="PROGRAM_PARAMETERS" value="--dataPath input --numUsers 100 --numProducts 100 --sparsity 0.05" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="PATTERN" value="org.bench.mr.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -202,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586169277645</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Scala code for RatingDataGenerator">
+      <created>1586180822205</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586180822205</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -234,10 +259,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586179045666" />
-    <state x="2433" y="78" width="760" height="899" key="CommitChangelistDialog2" timestamp="1586169277014">
+    <state x="2433" y="78" width="760" height="899" key="CommitChangelistDialog2" timestamp="1586180821703">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2433" y="78" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586169277014" />
+    <state x="2433" y="78" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180821703" />
     <state width="1669" height="312" key="GridCell.Tab.0.bottom" timestamp="1586180305044">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -306,7 +331,7 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/bench/ml/DataGen.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/org/bench/mr/DataGen.java</url>
           <line>44</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>

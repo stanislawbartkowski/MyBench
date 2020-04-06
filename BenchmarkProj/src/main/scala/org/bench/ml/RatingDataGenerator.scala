@@ -1,8 +1,6 @@
 package org.bench.ml
 
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.mllib.recommendation.Rating
-import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext
 import org.apache.spark.mllib.random._
 import org.apache.spark.rdd.{PairRDDFunctions, RDD}
