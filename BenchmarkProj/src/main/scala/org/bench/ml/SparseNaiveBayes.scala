@@ -29,7 +29,6 @@ import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.classification.NaiveBayes
 import org.apache.hadoop.io.Text
 import org.apache.spark.SparkContext._
-import org.bench.ml.RatingDataGenerator.Params
 import org.rogach.scallop.ScallopConf
 
 class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
