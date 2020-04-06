@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/Common.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/RatingDataGenerator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/mr/AvlExample.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/Common.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/mr/Common.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/RatingDataGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/mr/RatingDataGenerator.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +50,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -76,14 +81,39 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.AvlExample">
+  <component name="RunManager" selected="Application.DataGen">
     <configuration name="AvlExample" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.AvlExample" />
+      <option name="MAIN_CLASS_NAME" value="org.bench.mr.AvlExample" />
       <module name="BenchmarkProj" />
       <option name="PROGRAM_PARAMETERS" value="--dataPath=input" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="PATTERN" value="org.bench.mr.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataGen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.bench.mr.DataGen" />
+      <module name="BenchmarkProj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bench.mr.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataGen" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.bench.mr.DataGen" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bench.mr.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -92,12 +122,12 @@
       </method>
     </configuration>
     <configuration name="RatingDataGenerator" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.RatingDataGenerator" />
+      <option name="MAIN_CLASS_NAME" value="org.bench.mr.RatingDataGenerator" />
       <module name="BenchmarkProj" />
       <option name="PROGRAM_PARAMETERS" value="--dataPath input --numUsers 100 --numProducts 100 --sparsity 0.05" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="PATTERN" value="org.bench.mr.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -108,9 +138,13 @@
     <list>
       <item itemvalue="Application.AvlExample" />
       <item itemvalue="Application.RatingDataGenerator" />
+      <item itemvalue="Application.DataGen" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DataGen" />
+        <item itemvalue="Application.DataGen" />
+        <item itemvalue="Application.DataGen" />
         <item itemvalue="Application.AvlExample" />
         <item itemvalue="Application.RatingDataGenerator" />
       </list>
@@ -143,6 +177,7 @@
     </option>
     <option name="modificationStamps">
       <map>
+        <entry key="$PROJECT_DIR$" value="4758065909140" />
         <entry key="$PROJECT_DIR$/build.sbt" value="2503445051" />
         <entry key="$PROJECT_DIR$/project/assembly.sbt" value="3441400446" />
         <entry key="$PROJECT_DIR$/project/build.properties" value="1026143456" />
@@ -165,53 +200,89 @@
       <option name="presentableId" value="Default" />
       <updated>1585850890035</updated>
     </task>
+    <task id="LOCAL-00001" summary="Scala code for RatingDataGenerator">
+      <created>1586169277645</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586169277645</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Scala code for RatingDataGenerator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Scala code for RatingDataGenerator" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="2478" y="180" width="653" height="710" key="#DataGen" timestamp="1586180262272">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2478" y="180" width="653" height="710" key="#DataGen/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180262272" />
+    <state x="2478" y="180" width="653" height="710" key="#DataGen_(1)" timestamp="1586180182247">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2478" y="180" width="653" height="710" key="#DataGen_(1)/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180182247" />
     <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586165983162">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586165983162" />
-    <state x="2298" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586167492123">
+    <state x="2298" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586180255423">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2298" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586167492123" />
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586168640533">
+    <state x="2298" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180255423" />
+    <state x="2572" y="325" width="525" height="437" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1586180089532">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586168640533" />
-    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586168640533">
+    <state x="2572" y="325" width="525" height="437" key="#com.intellij.ide.util.TreeClassChooserDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180089532" />
+    <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586179045666">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586168640533" />
-    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586168640533">
+    <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586179045666" />
+    <state x="2433" y="78" width="760" height="899" key="CommitChangelistDialog2" timestamp="1586169277014">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586168640533" />
-    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586168640533">
+    <state x="2433" y="78" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586169277014" />
+    <state width="1669" height="312" key="GridCell.Tab.0.bottom" timestamp="1586180305044">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586168640533" />
-    <state width="1669" height="312" key="GridCell.Tab.1.bottom" timestamp="1586168436125">
+    <state width="1669" height="312" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180305044" />
+    <state width="1669" height="312" key="GridCell.Tab.0.center" timestamp="1586180305044">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="312" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586168436125" />
-    <state width="1669" height="312" key="GridCell.Tab.1.center" timestamp="1586168436125">
+    <state width="1669" height="312" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180305044" />
+    <state width="1669" height="312" key="GridCell.Tab.0.left" timestamp="1586180305044">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="312" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586168436125" />
-    <state width="1669" height="312" key="GridCell.Tab.1.left" timestamp="1586168436125">
+    <state width="1669" height="312" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180305044" />
+    <state width="1669" height="312" key="GridCell.Tab.0.right" timestamp="1586180305044">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="312" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586168436125" />
-    <state width="1669" height="312" key="GridCell.Tab.1.right" timestamp="1586168436125">
+    <state width="1669" height="312" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180305044" />
+    <state width="1669" height="312" key="GridCell.Tab.1.bottom" timestamp="1586180305044">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="312" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586168436125" />
+    <state width="1669" height="312" key="GridCell.Tab.1.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180305044" />
+    <state width="1669" height="312" key="GridCell.Tab.1.center" timestamp="1586180305044">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1669" height="312" key="GridCell.Tab.1.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180305044" />
+    <state width="1669" height="312" key="GridCell.Tab.1.left" timestamp="1586180305044">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1669" height="312" key="GridCell.Tab.1.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180305044" />
+    <state width="1669" height="312" key="GridCell.Tab.1.right" timestamp="1586180305044">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1669" height="312" key="GridCell.Tab.1.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586180305044" />
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor" timestamp="1585858394401">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585858394401" />
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586169279839">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586169279839" />
     <state x="2163" y="266" width="1345" height="556" key="new project wizard" timestamp="1585853521077">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -225,19 +296,24 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
+          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/mr/AvlExample.scala</url>
           <line>84</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
+          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/mr/AvlExample.scala</url>
           <line>114</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
+          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/mr/AvlExample.scala</url>
           <line>103</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/bench/mr/DataGen.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
