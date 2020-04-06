@@ -1,24 +1,32 @@
 # list of all tests
-TESTLIST=wordcount,terasort,dsfio,als
+TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt
 
 # DATA SIZE
 LISTSIZE=tiny
 BENCHSIZE=tiny
 
-TMPINPUTDIR=/tmp/bench/inputdir
-TMPOUTPUTDIR=/tmp/bench/outputdir
-TMPOUTPUT1DIR=/tmp/bench/output1dir
+
+TMPBASEDIR=/tmp/bench
+INPUTDIR=inputdir
+TMPINPUTDIR=$TMPBASEDIR/$INPUTDIR
+TMPOUTPUTDIR=$TMPBASEDIR/outputdir
+TMPOUTPUT1DIR=$TMPBASEDIR/output1dir
 
 JUNITJAR=/usr/hdp/current/hbase-client/lib/junit-4.12.jar
 HADOOPMAPREDUCETEST=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient-tests.jar
 HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
 
-BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchmarkProj-assembly-0.1.jar
+BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchJar.jar
 
 spark_executor_cores=2
 spark_driver_cores=2
 spark_driver_memory=2g
 spark_num_executors=2
+
+map_parallelism=8
+shuffle_parallelism=8
+
+
 
 
 

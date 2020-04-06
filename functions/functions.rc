@@ -109,11 +109,8 @@ remove_tmpoutput1() {
   rmr_hdfs $TMPOUTPUT1DIR
 }
 
-
 remove_tmp() {
-  rmr_hdfs $TMPINPUTDIR
-  remove_tmpoutput
-  remove_tmpoutput1
+  rmr_hdfs $TMPBASEDIR
 }
 
 required_var() {
@@ -269,6 +266,17 @@ sparkbenchjar() {
 
 sparksql() {
     local CMD="echo exit | spark-sql --master yarn -i $@"
+    execute_withlog ${CMD}
+}
+
+hadoopbenchjar() {
+    read -r NUM_MAPS NUM_REDS <<< `getconfvar map.parallelism shuffle.parallelism`
+    required_listofpars NUM_MAPS NUM_REDS
+    log_listofpars NUM_MAPS NUM_REDS
+    local -r ACTION=$1
+    shift
+
+    local CMD="yarn jar $BENCHMARKJAR org.bench.mr.DataGen -t $ACTION -m ${NUM_MAPS} -r ${NUM_REDS} $@"
     execute_withlog ${CMD}
 }
 
