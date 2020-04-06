@@ -1,4 +1,4 @@
-package org.bench.mr;
+package org.bench.ml;
 
 
 import java.io.Serializable;

@@ -83,12 +83,12 @@
   </component>
   <component name="RunManager" selected="Application.DataGen">
     <configuration name="AvlExample" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.mr.AvlExample" />
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.AvlExample" />
       <module name="BenchmarkProj" />
       <option name="PROGRAM_PARAMETERS" value="--dataPath=input" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.bench.mr.*" />
+          <option name="PATTERN" value="org.bench.ml.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,11 +97,11 @@
       </method>
     </configuration>
     <configuration name="DataGen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.mr.DataGen" />
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.DataGen" />
       <module name="BenchmarkProj" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.bench.mr.*" />
+          <option name="PATTERN" value="org.bench.ml.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -122,12 +122,12 @@
       </method>
     </configuration>
     <configuration name="RatingDataGenerator" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.mr.RatingDataGenerator" />
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.RatingDataGenerator" />
       <module name="BenchmarkProj" />
       <option name="PROGRAM_PARAMETERS" value="--dataPath input --numUsers 100 --numProducts 100 --sparsity 0.05" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.bench.mr.*" />
+          <option name="PATTERN" value="org.bench.ml.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

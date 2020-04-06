@@ -1,4 +1,4 @@
-package org.bench.mr;
+package org.bench.ml;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;

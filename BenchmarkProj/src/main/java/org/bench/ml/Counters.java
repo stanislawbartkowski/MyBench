@@ -1,4 +1,4 @@
-package org.bench.mr;
+package org.bench.ml;
 
 public enum Counters {
 	BYTES_DATA_GENERATED

@@ -1,4 +1,4 @@
-package org.bench.mr
+package org.bench.ml
 
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.recommendation.Rating
