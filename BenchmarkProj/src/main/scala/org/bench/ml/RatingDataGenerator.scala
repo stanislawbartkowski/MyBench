@@ -42,15 +42,6 @@ object RatingDataGenerator {
     Common.setMaster(conf)
     val sc = new SparkContext(conf)
 
-//    var outputPath = ""
-//    var numUsers: Int = 100
-//    var numProducts: Int = 100
-//    var sparsity: Double = 0.05
-//    var implicitPrefs: Boolean = false
-//    val parallel = sc.getConf.getInt("spark.default.parallelism", sc.defaultParallelism)
-//    val numPartitions = IOCommon.getProperty("hibench.default.shuffle.parallelism")
-//      .getOrElse((parallel / 2).toString).toInt
-
     val numPartitions = Common.getNumOfPartitons(sc)
 
     val rawData: RDD[Vector] = RandomRDDs.normalVectorRDD(sc, params.numUsers, params.numProducts, numPartitions)
