@@ -10,7 +10,7 @@ object Common {
   }
 
   def setMaster(conf : SparkConf) = {
-    conf.setMaster("local[2]")
+//    conf.setMaster("local[2]")
   }
 
   def setCheckPoint(sc : SparkContext) = {
