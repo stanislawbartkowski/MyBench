@@ -38,6 +38,7 @@ import org.rogach.scallop.ScallopConf
  * }}}
  * If you use it as a template to create your own app, please use `spark-submit` to submit your app.
  */
+
 object SparseNaiveBayes {
 
   private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
