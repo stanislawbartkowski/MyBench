@@ -57,11 +57,6 @@ object LDAExample {
   def main(args: Array[String]): Unit = {
 
     val params = new Params(args)
-    val conf = new SparkConf().setAppName("RatingDataGeneration")
-    Common.setMaster(conf)
-    val sc = new SparkContext(conf)
-
-    val numPartitions = Common.getNumOfPartitons(sc)
     run(params)
   }
 
@@ -69,6 +64,7 @@ object LDAExample {
     val conf = new SparkConf()
       .setAppName(s"LDA Example with $params")
       .set("spark.driver.maxResultSize", params.maxResultSize)
+    Common.setMaster(conf)
     val sc = new SparkContext(conf)
 
     val corpus: RDD[(Long, Vector)] = sc.objectFile(params.dataPath)

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LDAExample.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LDAExample.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LDAExample.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -338,7 +338,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586285322979</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="LDAExample">
+      <created>1586287972330</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1586287972330</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -347,7 +354,8 @@
     <MESSAGE value="SparseNaiveBayes" />
     <MESSAGE value="GradientBoostedTreeDataGenerator" />
     <MESSAGE value="LDADataGenerator" />
-    <option name="LAST_COMMIT_MESSAGE" value="LDADataGenerator" />
+    <MESSAGE value="LDAExample" />
+    <option name="LAST_COMMIT_MESSAGE" value="LDAExample" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2478" y="180" width="653" height="710" key="#DataGen" timestamp="1586180262272">
@@ -386,22 +394,22 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586287971664" />
-    <state width="1669" height="312" key="GridCell.Tab.0.bottom" timestamp="1586287936035">
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586288648664">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="312" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586287936035" />
-    <state width="1669" height="312" key="GridCell.Tab.0.center" timestamp="1586287936035">
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586288648664" />
+    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586288648664">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="312" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586287936034" />
-    <state width="1669" height="312" key="GridCell.Tab.0.left" timestamp="1586287936034">
+    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586288648663" />
+    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586288648663">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="312" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586287936034" />
-    <state width="1669" height="312" key="GridCell.Tab.0.right" timestamp="1586287936035">
+    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586288648663" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586288648664">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="312" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586287936035" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586288648664" />
     <state width="1669" height="312" key="GridCell.Tab.1.bottom" timestamp="1586287936035">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -422,10 +430,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585858394401" />
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586285324505">
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586287974597">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586285324505" />
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586287974597" />
     <state x="2163" y="266" width="1345" height="556" key="new project wizard" timestamp="1585853521077">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
