@@ -1,6 +1,7 @@
 BENCHSIZE=tiny
 
-#TESTLIST=wordcount,terasort,dsfio,als,gbt
+#TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr
+
 #TESTLIST=wordcount
 #TESTLIST=terasort
 #TESTLIST=dsfio
