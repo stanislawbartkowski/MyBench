@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="Linear Regression">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LogisticRegression.scala" afterDir="false" />
+    <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LinearRegression.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LinearRegression.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LogisticRegressionDataGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LogisticRegressionDataGenerator.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -355,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586350233619</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Linear Regression">
+      <created>1586368969089</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1586368969089</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -401,10 +407,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586179045666" />
-    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2" timestamp="1586350233367">
+    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2" timestamp="1586368968841">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586350233367" />
+    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368968841" />
     <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586368952353">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -441,10 +447,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585858394401" />
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586350235538">
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586368970422">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586350235538" />
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368970422" />
     <state x="2163" y="266" width="1345" height="556" key="new project wizard" timestamp="1585853521077">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

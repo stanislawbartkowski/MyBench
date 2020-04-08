@@ -45,25 +45,25 @@ object LogisticRegressionDataGenerator {
     For usage see below:
     """)
     private val odataPath = opt[String]("dataPath", required = true)
-    val onumExamples =  opt[Int]("numExamples")
+    val onumExamples = opt[Int]("numExamples")
     val onumFeatures = opt[Int]("numFeatures")
     verify()
 
     val dataPath: String = odataPath.getOrElse("")
     val numExamples = onumExamples.getOrElse(200000)
-    val numFeatures : Int = onumFeatures.getOrElse(20)
+    val numFeatures: Int = onumFeatures.getOrElse(20)
   }
 
 
   /**
    * Generate an RDD containing test data for LogisticRegression.
    *
-   * @param sc SparkContext to use for creating the RDD.
+   * @param sc        SparkContext to use for creating the RDD.
    * @param nexamples Number of examples that will be contained in the RDD.
    * @param nfeatures Number of features to generate for each example.
-   * @param eps Epsilon factor by which positive examples are scaled.
-   * @param nparts Number of partitions of the generated RDD. Default value is 2.
-   * @param probOne Probability that a label is 1 (and not 0). Default value is 0.5.
+   * @param eps       Epsilon factor by which positive examples are scaled.
+   * @param nparts    Number of partitions of the generated RDD. Default value is 2.
+   * @param probOne   Probability that a label is 1 (and not 0). Default value is 0.5.
    */
   def generateLogisticRDD(
                            sc: SparkContext,
@@ -96,20 +96,6 @@ object LogisticRegressionDataGenerator {
     var numExamples: Int = params.numExamples
     var numFeatures: Int = params.numFeatures
     val eps = 3
-
-    if (args.length == 3) {
-      outputPath = args(0)
-      numExamples = args(1).toInt
-      numFeatures = args(2).toInt
-      println(s"Output Path: $outputPath")
-      println(s"Num of Examples: $numExamples")
-      println(s"Num of Features: $numFeatures")
-    } else {
-      System.err.println(
-        s"Usage: $LogisticRegressionDataGenerator <OUTPUT_PATH> <NUM_EXAMPLES> <NUM_FEATURES>"
-      )
-      System.exit(1)
-    }
 
     val data = generateLogisticRDD(sc, numExamples, numFeatures, eps, numPartitions)
 
