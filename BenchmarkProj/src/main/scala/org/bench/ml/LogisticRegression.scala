@@ -17,15 +17,16 @@ package org.bench.ml
  * limitations under the License.
  */
 
+// scalastyle:off println
 
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.mllib.classification.LogisticRegressionWithLBFGS
 import org.apache.spark.mllib.regression.LabeledPoint
-import org.apache.spark.mllib.regression.LinearRegressionWithSGD
 import org.apache.spark.rdd.RDD
+import org.bench.ml.LogisticRegressionDataGenerator.Params
 import org.rogach.scallop.ScallopConf
 
-
-object LinearRegression {
+object LogisticRegression {
 
   class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
 
@@ -33,51 +34,56 @@ object LinearRegression {
 
     banner(
       """
-     LR: an example application for Linear Regression
+   LR: an example app for Logistic Regression
 
     Example: spark-submit target/scala-2.11/benchmarkproj_2.11-0.1.jar  --dataPath <inputDir>
 
     For usage see below:
     """)
     private val odataPath = opt[String]("dataPath", required = true)
-    val onumIterations = opt[Int]("numIterations")
-    val ostepSize = opt[Double]("stepSize")
     verify()
 
     val dataPath: String = odataPath.getOrElse("")
-    val numIterations: Int = onumIterations.getOrElse(100)
-    val stepSize: Double = ostepSize.getOrElse(0.00000001)
   }
+
 
   def main(args: Array[String]): Unit = {
+
     val params = new Params(args)
-    run(params)
-  }
 
+    var inputPath = params.dataPath
 
-  def run(params: Params): Unit = {
-    val conf = new SparkConf().setAppName(s"LinearRegressionWithSGD with $params")
+    val conf = new SparkConf()
+      .setAppName("LogisticRegressionWithLBFGS")
     Common.setMaster(conf)
+
     val sc = new SparkContext(conf)
 
-    val dataPath = params.dataPath
-    val numIterations = params.numIterations
-    val stepSize = params.stepSize
+    // $example on$
+    // Load training data in LIBSVM format.
+    val data: RDD[LabeledPoint] = sc.objectFile(inputPath)
 
-    // Load training data in LabeledPoint format.
-    val data: RDD[LabeledPoint] = sc.objectFile(dataPath)
+    // Split data into training (60%) and test (40%).
+    val splits = data.randomSplit(Array(0.6, 0.4), seed = 11L)
+    val training = splits(0).cache()
+    val test = splits(1)
 
-    // Building the model
-    val model = LinearRegressionWithSGD.train(data, numIterations, stepSize)
+    // Run training algorithm to build the model
+    val model = new LogisticRegressionWithLBFGS()
+      .setNumClasses(10)
+      .run(training)
 
-    // Evaluate model on training examples and compute training error
-    val valuesAndPreds = data.map { point =>
-      val prediction = model.predict(point.features)
-      (point.label, prediction)
+    // Compute raw scores on the test set.
+    val predictionAndLabels = test.map { case LabeledPoint(label, features) =>
+      val prediction = model.predict(features)
+      (prediction, label)
     }
-    val MSE = valuesAndPreds.map { case (v, p) => math.pow((v - p), 2) }.mean()
-    println("Training Mean Squared Error = " + MSE)
+
+    val accuracy = predictionAndLabels.filter(x => x._1 == x._2).count().toDouble / predictionAndLabels.count()
+    println(s"Accuracy = $accuracy")
 
     sc.stop()
   }
 }
+
+// scalastyle:on println

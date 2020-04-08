@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LinearRegression.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LinearRegressionDataGenerator.scala" afterDir="false" />
+    <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="Linear Regression">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LogisticRegression.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LinearRegression.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LinearRegression.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,36 +82,35 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.LogisticRegression">
-    <configuration name="GradientBoostedTree" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.GradientBoostedTree" />
-      <module name="BenchmarkProj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LDADataGenerator" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.LDADataGenerator" />
-      <module name="BenchmarkProj" />
-      <option name="PROGRAM_PARAMETERS" value="--dataPath input --numDocs 2000 --numVocab 1000 --docLenMin 50 --docLenMax 100000" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.LinearRegression">
     <configuration name="LDAExample" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.bench.ml.LDAExample" />
+      <module name="BenchmarkProj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LinearRegression" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.LinearRegression" />
+      <module name="BenchmarkProj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LinearRegressionDataGenerator" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.LinearRegressionDataGenerator" />
       <module name="BenchmarkProj" />
       <extension name="coverage">
         <pattern>
@@ -150,19 +149,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.GradientBoostedTree" />
-      <item itemvalue="Application.LDADataGenerator" />
       <item itemvalue="Application.LDAExample" />
       <item itemvalue="Application.LogisticRegressionDataGenerator" />
       <item itemvalue="Application.LogisticRegression" />
+      <item itemvalue="Application.LinearRegressionDataGenerator" />
+      <item itemvalue="Application.LinearRegression" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LinearRegression" />
+        <item itemvalue="Application.LinearRegressionDataGenerator" />
         <item itemvalue="Application.LogisticRegression" />
         <item itemvalue="Application.LogisticRegressionDataGenerator" />
         <item itemvalue="Application.LDAExample" />
-        <item itemvalue="Application.LDADataGenerator" />
-        <item itemvalue="Application.GradientBoostedTree" />
       </list>
     </recent_temporary>
   </component>
@@ -342,7 +341,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586288663611</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Linear Regression">
+      <created>1586349290664</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1586349290664</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Linear Regression">
+      <created>1586350233619</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1586350233619</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -352,7 +365,8 @@
     <MESSAGE value="GradientBoostedTreeDataGenerator" />
     <MESSAGE value="LDADataGenerator" />
     <MESSAGE value="LDAExample" />
-    <option name="LAST_COMMIT_MESSAGE" value="LDAExample" />
+    <MESSAGE value="Linear Regression" />
+    <option name="LAST_COMMIT_MESSAGE" value="Linear Regression" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2478" y="180" width="653" height="710" key="#DataGen" timestamp="1586180262272">
@@ -371,10 +385,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2469" y="192" width="1273" height="827" key="#Project_Structure/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586278961450" />
-    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586349164815">
+    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586368875660">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586349164815" />
+    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368875660" />
     <state x="2298" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586284991680">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -387,26 +401,26 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586179045666" />
-    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2" timestamp="1586288663324">
+    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2" timestamp="1586350233367">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586288663324" />
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586349196734">
+    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586350233367" />
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586368952353">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586349196734" />
-    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586349196734">
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368952353" />
+    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586368952353">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586349196734" />
-    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586349196733">
+    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368952353" />
+    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586368952353">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586349196733" />
-    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586349196734">
+    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368952353" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586368952353">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586349196734" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368952353" />
     <state width="1669" height="312" key="GridCell.Tab.1.bottom" timestamp="1586289271615">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -427,18 +441,18 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585858394401" />
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586288665864">
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586350235538">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586288665864" />
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586350235538" />
     <state x="2163" y="266" width="1345" height="556" key="new project wizard" timestamp="1585853521077">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2163" y="266" width="1345" height="556" key="new project wizard/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585853521077" />
-    <state x="2504" y="245" key="run.anything.popup" timestamp="1585854361052">
+    <state x="2504" y="245" key="run.anything.popup" timestamp="1586368891577">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2504" y="245" key="run.anything.popup/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585854361052" />
+    <state x="2504" y="245" key="run.anything.popup/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368891577" />
     <state x="2537" y="252" width="672" height="678" key="search.everywhere.popup" timestamp="1586190462902">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
