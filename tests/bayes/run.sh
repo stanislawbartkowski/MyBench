@@ -22,11 +22,7 @@ prepare() {
 }
 
 ran_bayes() {
-    local -r BEGTEST=`testbeg mlbayes`
-
-    sparkbenchjar SparseNaiveBayes --dataPath $TMPINPUTDIR
-
-    testend $BEGTEST
+    spark_run mlbayes SparseNaiveBayes
 }
 
 run() {

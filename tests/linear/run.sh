@@ -2,18 +2,7 @@ source $FUNCTIONSRC
 setenv
 
 prepare() {
-    local -r BEGTEST=`testbeg prepare`
-    read -r NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR <<< `getconfvar examples features`
-    required_listofpars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
-    log_listofpars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
-
-
-    OPTIONS="--numExamples $NUM_EXAMPLES_LINEAR \
-             --numFeatures $NUM_FEATURES_LINEAR \
-             --dataPath $TMPINPUTDIR
-            "
-    sparkbenchjar LinearRegressionDataGenerator $OPTIONS
-    testend $BEGTEST
+   spark_prepare LinearRegressionDataGenerator
 }
 
 runlinear() {
