@@ -50,12 +50,12 @@ object SparseNaiveBayes {
     For usage see below:
     """)
     private val odataPath = opt[String]("dataPath",required = true)
-    private val ominPartitions =  opt[Int]("numPartitions", required = true)
-    private val onumFeatures  = opt[Int]("numFeatures", required = true)
-    private val olambda = opt[Double]("lambda", required = true)
+    private val ominPartitions =  opt[Int]("numPartitions")
+    private val onumFeatures  = opt[Int]("numFeatures")
+    private val olambda = opt[Double]("lambda")
     verify()
     val dataPath : String = odataPath.getOrElse("")
-    val  minPartitions: Int = ominPartitions.getOrElse(0)
+    val minPartitions: Int = ominPartitions.getOrElse(0)
     val numFeatures: Int = onumFeatures.getOrElse(-1)
     val lambda: Double = olambda.getOrElse(1.0)
   }
