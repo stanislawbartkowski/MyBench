@@ -30,7 +30,8 @@ import org.rogach.scallop.ScallopConf
  * Generate test data for LogisticRegression. This class chooses positive labels
  * with probability `probOne` and scales features for positive examples by `eps`.
  */
-object LogisticRegressionDataGenerator {
+object PCADataGenerator {
+
 
   class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
 
@@ -38,7 +39,7 @@ object LogisticRegressionDataGenerator {
 
     banner(
       """
-   LR: an example data generator for Logistic Regression
+   PCA: an example data generator for PCA
 
     Example: spark-submit target/scala-2.11/benchmarkproj_2.11-0.1.jar  --dataPath <inputDir>
 
@@ -50,34 +51,34 @@ object LogisticRegressionDataGenerator {
     verify()
 
     val dataPath: String = odataPath.getOrElse("")
-    val numExamples = onumExamples.getOrElse(200000)
-    val numFeatures: Int = onumFeatures.getOrElse(20)
+    val numExamples = onumExamples.getOrElse(100)
+    val numFeatures: Int = onumFeatures.getOrElse(8)
+
   }
 
-
   /**
-   * Generate an RDD containing test data for LogisticRegression.
+   * Generate an RDD containing test data for PCA.
    *
-   * @param sc        SparkContext to use for creating the RDD.
+   * @param sc SparkContext to use for creating the RDD.
    * @param nexamples Number of examples that will be contained in the RDD.
    * @param nfeatures Number of features to generate for each example.
-   * @param eps       Epsilon factor by which positive examples are scaled.
-   * @param nparts    Number of partitions of the generated RDD. Default value is 2.
-   * @param probOne   Probability that a label is 1 (and not 0). Default value is 0.5.
+   * @param eps Epsilon factor by which positive examples are scaled.
+   * @param nparts Number of partitions of the generated RDD. Default value is 2.
+   * @param probOne Probability that a label is 1 (and not 0). Default value is 0.5.
    */
-  def generateLogisticRDD(
-                           sc: SparkContext,
-                           nexamples: Int,
-                           nfeatures: Int,
-                           eps: Double,
-                           nparts: Int = 2,
-                           probOne: Double = 0.5): RDD[LabeledPoint] = {
+  def generatePCARDD(
+                      sc: SparkContext,
+                      nexamples: Int,
+                      nfeatures: Int,
+                      eps: Double,
+                      nparts: Int = 2,
+                      probOne: Double = 0.5): RDD[LabeledPoint] = {
     val data = sc.parallelize(0 until nexamples, nparts).map { idx =>
       val rnd = new Random(42 + idx)
 
-      val y = if (idx % 2 == 0) 0.0 else 1.0
+      val y = rnd.nextGaussian()
       val x = Array.fill[Double](nfeatures) {
-        rnd.nextGaussian() + (y * eps)
+        rnd.nextGaussian() - 0.5
       }
       LabeledPoint(y, Vectors.dense(x))
     }
@@ -87,17 +88,18 @@ object LogisticRegressionDataGenerator {
   def main(args: Array[String]) {
     val params = new Params(args)
 
-    val conf = new SparkConf().setAppName("LogisticRegressionDataGenerator")
+    val conf = new SparkConf().setAppName("PCADataGenerator")
     Common.setMaster(conf)
     val sc = new SparkContext(conf)
-    val numPartitions = Common.getNumOfPartitons(sc)
 
     var outputPath = params.dataPath
     var numExamples: Int = params.numExamples
     var numFeatures: Int = params.numFeatures
+    val numPartitions = Common.getNumOfPartitons(sc)
     val eps = 3
 
-    val data = generateLogisticRDD(sc, numExamples, numFeatures, eps, numPartitions)
+
+    val data = generatePCARDD(sc, numExamples, numFeatures, eps, numPartitions)
 
     data.saveAsObjectFile(outputPath)
 
