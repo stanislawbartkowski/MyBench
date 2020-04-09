@@ -1,5 +1,5 @@
 # list of all tests
-TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda
+TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr
 
 # DATA SIZE
 LISTSIZE=tiny
