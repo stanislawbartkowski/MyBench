@@ -47,8 +47,8 @@ object LinearRegressionDataGenerator {
     For usage see below:
     """)
     private val odataPath = opt[String]("dataPath", required = true)
-    val onumExamples = opt[Int]("numExamples")
-    val onumFeatures = opt[Int]("numFeatures")
+    val onumExamples = opt[Int]("numExamples", required = true)
+    val onumFeatures = opt[Int]("numFeatures", required = true)
     verify()
 
     val dataPath: String = odataPath.getOrElse("")

@@ -40,8 +40,8 @@ object LinearRegression {
     For usage see below:
     """)
     private val odataPath = opt[String]("dataPath", required = true)
-    val onumIterations = opt[Int]("numIterations")
-    val ostepSize = opt[Double]("stepSize")
+    val onumIterations = opt[Int]("numIterations", required = true)
+    val ostepSize = opt[Double]("stepSize", required = true)
     verify()
 
     val dataPath: String = odataPath.getOrElse("")

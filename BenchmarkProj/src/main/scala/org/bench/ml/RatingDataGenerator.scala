@@ -24,7 +24,7 @@ object RatingDataGenerator {
     private val onumUsers = opt[Int]("numUsers",required = true)
     private val onumProducts = opt[Int]("numProducts",required = true)
     private val osparsity = opt[Double]("sparsity",required = true)
-    private val oimplicitPrefs = opt[Boolean]("implicitPrefs")
+    private val oimplicitPrefs = opt[Boolean]("implicitPrefs", required = true)
     private val help = opt[Boolean]("help", noshort = true, descr = "Show this message")
     verify()
 

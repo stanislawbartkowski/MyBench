@@ -46,8 +46,8 @@ object PCADataGenerator {
     For usage see below:
     """)
     private val odataPath = opt[String]("dataPath", required = true)
-    private val onumExamples = opt[Int]("numExamples")
-    private val onumFeatures = opt[Int]("numFeatures")
+    private val onumExamples = opt[Int]("numExamples", required = true)
+    private val onumFeatures = opt[Int]("numFeatures", required = true)
     verify()
 
     val dataPath: String = odataPath.getOrElse("")
