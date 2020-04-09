@@ -43,7 +43,7 @@ object PCAExample {
     For usage see below:
     """)
     private val odataPath = opt[String]("dataPath", required = true)
-    private val omaxResultSize = opt[String]("maxResultSize")
+    private val omaxResultSize = opt[String]("maxResultSize", required = true)
     verify()
 
     val dataPath: String = odataPath.getOrElse("")

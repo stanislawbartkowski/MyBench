@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sbt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LogisticRegressionDataGenerator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LogisticRegressionDataGenerator.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/PCAExample.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/PCAExample.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +67,6 @@
   <component name="ProjectViewState">
     <option name="flattenModules" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -81,20 +82,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.LinearRegression">
-    <configuration name="LDAExample" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.LDAExample" />
-      <module name="BenchmarkProj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.PCAExample">
     <configuration name="LinearRegression" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.bench.ml.LinearRegression" />
       <module name="BenchmarkProj" />
@@ -134,8 +122,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogisticRegressionDataGenerator" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.LogisticRegressionDataGenerator" />
+    <configuration name="PCADataGenerator" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.PCADataGenerator" />
+      <module name="BenchmarkProj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PCAExample" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.PCAExample" />
       <module name="BenchmarkProj" />
       <extension name="coverage">
         <pattern>
@@ -148,60 +149,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.LDAExample" />
-      <item itemvalue="Application.LogisticRegressionDataGenerator" />
-      <item itemvalue="Application.LogisticRegression" />
       <item itemvalue="Application.LinearRegressionDataGenerator" />
       <item itemvalue="Application.LinearRegression" />
+      <item itemvalue="Application.LogisticRegression" />
+      <item itemvalue="Application.PCADataGenerator" />
+      <item itemvalue="Application.PCAExample" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PCAExample" />
+        <item itemvalue="Application.PCADataGenerator" />
         <item itemvalue="Application.LinearRegression" />
         <item itemvalue="Application.LinearRegressionDataGenerator" />
         <item itemvalue="Application.LogisticRegression" />
-        <item itemvalue="Application.LogisticRegressionDataGenerator" />
-        <item itemvalue="Application.LDAExample" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SbtLocalSettings">
-    <option name="availableProjects">
-      <map>
-        <entry>
-          <key>
-            <ExternalProjectPojo>
-              <option name="name" value="BenchmarkProj" />
-              <option name="path" value="$PROJECT_DIR$" />
-            </ExternalProjectPojo>
-          </key>
-          <value>
-            <list>
-              <ExternalProjectPojo>
-                <option name="name" value="benchmarkproj [file:/home/sbartkowski/work/MyBench/BenchmarkProj/]" />
-                <option name="path" value="$PROJECT_DIR$" />
-              </ExternalProjectPojo>
-              <ExternalProjectPojo>
-                <option name="name" value="BenchmarkProj-build" />
-                <option name="path" value="$PROJECT_DIR$/project" />
-              </ExternalProjectPojo>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="modificationStamps">
-      <map>
-        <entry key="$PROJECT_DIR$" value="4758172222648" />
-        <entry key="$PROJECT_DIR$/build.sbt" value="380747189" />
-        <entry key="$PROJECT_DIR$/project/assembly.sbt" value="3441400446" />
-        <entry key="$PROJECT_DIR$/project/build.properties" value="1026143456" />
-      </map>
-    </option>
-    <option name="projectSyncType">
-      <map>
-        <entry key="$USER_HOME$/projects/ConnectHBase" value="PREVIEW" />
-      </map>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -361,7 +323,21 @@
       <option name="project" value="LOCAL" />
       <updated>1586368969089</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Linear Regression">
+      <created>1586370274862</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1586370274862</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Linear Regression">
+      <created>1586473730621</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1586473730621</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -391,10 +367,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2469" y="192" width="1273" height="827" key="#Project_Structure/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586278961450" />
-    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586368875660">
+    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586473672874">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368875660" />
+    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586473672874" />
     <state x="2298" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586284991680">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -407,26 +383,26 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586179045666" />
-    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2" timestamp="1586368968841">
+    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2" timestamp="1586473729919">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2347" y="73" width="760" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368968841" />
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586368952353">
+    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586473729919" />
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586473708520">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368952353" />
-    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586368952353">
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586473708520" />
+    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586473708520">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368952353" />
-    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586368952353">
+    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586473708520" />
+    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586473708520">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368952353" />
-    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586368952353">
+    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586473708520" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586473708520">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368952353" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586473708520" />
     <state width="1669" height="312" key="GridCell.Tab.1.bottom" timestamp="1586289271615">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -447,10 +423,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585858394401" />
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586368970422">
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586473732885">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586368970422" />
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586473732885" />
     <state x="2163" y="266" width="1345" height="556" key="new project wizard" timestamp="1585853521077">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -467,21 +443,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
-          <line>77</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
-          <line>107</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/bench/ml/AvlExample.scala</url>
-          <line>96</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/bench/mr/DataGen.java</url>
           <line>44</line>
