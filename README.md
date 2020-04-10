@@ -24,11 +24,13 @@ Test<br>
 The MyBench test is controlled by *test.rc* environment settings. Any variable in *test.tc* can be overwritten by *custom.rc*
 <br>
 The basic customization:<br>
- * *TESTLIST* List of tests to be executed. *TESTLIST* variable in *test.rc* contains list of all tests implemented so far. *TESTLIST* can contain a list of tests separated by comma or a single test.
+ * *TESTLIST* List of tests to be executed. *TESTLIST* variable in *test.rc* can be used as a reference, it contains a list of all tests implemented so far. *TESTLIST* in *custom.rc* is the list of tests to be executed.
  * *BENCHSIZE* Size of the test. Currently only *tiny* is supported
 
 # Run test suite
-> ./runtest.sh
+> ./runtest.sh<br>
+
+Executes all tests specified in the *TESTLIST* variable in *conf/custom.rc* source file.
 
 
 
