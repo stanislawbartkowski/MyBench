@@ -1,11 +1,18 @@
 BENCHSIZE=tiny
 
-#TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr
+#TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr,pca,rf,svd,svm
 
 #TESTLIST=wordcount
 #TESTLIST=terasort
 #TESTLIST=dsfio
 #TESTLIST=als
-#TESTLIST=bayes
-TESTLIST=gbt
+TESTLIST=bayes
+#TESTLIST=gbt
+#TESTLIST=lda
+#TESTLIST=linear
+#TESTLIST=lr
+#TESTLIST=pca
+#TESTLIST=rf
+#TESTLIST=svd
+#TESTLIST=svm
 
