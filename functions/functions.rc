@@ -45,6 +45,16 @@ crtemp() {
 # different report functions
 # =============================
 
+dir_size() {
+    local -r DIR=$1
+    local -r SIZE=`hdfs dfs -du -h -s $DIR | cut -d' ' -f1-2`
+    echo $SIZE
+}
+
+dir_isize() {
+    echo `dir_size $TMPINPUTDIR`
+}
+
 getsec() {
   echo `date  +"%s"`
 }
@@ -70,6 +80,7 @@ tsp() {
 NAMELEN=20
 DATELEN=20
 SECLEN=10
+SIZELEN=10
 
 
 printline() {
@@ -86,7 +97,7 @@ printline() {
 testbeg() {
     local -r subtest=$1
     if [ ! -f $REPORTFILE ]; then
-        printline TEST $NAMELEN SUBTEST $NAMELEN START $DATELEN END $DATELEN TIME/SEC $SECLEN
+        printline TEST $NAMELEN SUBTEST $NAMELEN SIZE $SIZELEN START $DATELEN END $DATELEN TIME/SEC $SECLEN
     fi 
     local -r BEG="$subtest,`getdate`,`getsec`"
     echo $BEG
@@ -94,7 +105,7 @@ testbeg() {
 
 testend() {
     IFS=',' read -r subtest begdate begsec <<<$@
-    printline $TESTNAME $NAMELEN $subtest $NAMELEN "$begdate" $DATELEN "`getdate`" $DATELEN "`calculatesec $begsec`" $SECLEN
+    printline $TESTNAME $NAMELEN $subtest $NAMELEN "`dir_isize`" $SIZELEN "$begdate" $DATELEN "`getdate`" $DATELEN "`calculatesec $begsec`" $SECLEN
 }
 
 # ========================
