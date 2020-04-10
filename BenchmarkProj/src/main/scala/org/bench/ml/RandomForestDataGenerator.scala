@@ -17,38 +17,38 @@ package org.bench.ml
  * limitations under the License.
  */
 
-
 import scala.util.Random
+
 import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.annotation.{DeveloperApi, Since}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.rdd.RDD
-import org.rogach.scallop.ScallopConf
 
 /**
  * :: DeveloperApi ::
- * Generate test data for LogisticRegression. This class chooses positive labels
+ * Generate test data for Random Forest. This class chooses positive labels
  * with probability `probOne` and scales features for positive examples by `eps`.
  */
-object LogisticRegressionDataGenerator {
+object RandomForestDataGenerator {
 
   /**
-   * Generate an RDD containing test data for LogisticRegression.
+   * Generate an RDD containing test data for RandomForest.
    *
-   * @param sc        SparkContext to use for creating the RDD.
+   * @param sc SparkContext to use for creating the RDD.
    * @param nexamples Number of examples that will be contained in the RDD.
    * @param nfeatures Number of features to generate for each example.
-   * @param eps       Epsilon factor by which positive examples are scaled.
-   * @param nparts    Number of partitions of the generated RDD. Default value is 2.
-   * @param probOne   Probability that a label is 1 (and not 0). Default value is 0.5.
+   * @param eps Epsilon factor by which positive examples are scaled.
+   * @param nparts Number of partitions of the generated RDD. Default value is 2.
+   * @param probOne Probability that a label is 1 (and not 0). Default value is 0.5.
    */
-  def generateLogisticRDD(
-                           sc: SparkContext,
-                           nexamples: Int,
-                           nfeatures: Int,
-                           eps: Double,
-                           nparts: Int = 2,
-                           probOne: Double = 0.5): RDD[LabeledPoint] = {
+  def generateRFRDD(
+                     sc: SparkContext,
+                     nexamples: Int,
+                     nfeatures: Int,
+                     eps: Double,
+                     nparts: Int = 2,
+                     probOne: Double = 0.5): RDD[LabeledPoint] = {
     val data = sc.parallelize(0 until nexamples, nparts).map { idx =>
       val rnd = new Random(42 + idx)
 
@@ -62,19 +62,18 @@ object LogisticRegressionDataGenerator {
   }
 
   def main(args: Array[String]) {
-    val params = new FeatureParams(args,200000,20,"LR: an example data generator for Logistic Regression")
-
-    val conf = new SparkConf().setAppName("LogisticRegressionDataGenerator")
+    val params = new FeatureParams(args,200000,20,"RF: an example data generator for Random Forest")
+    val conf = new SparkConf().setAppName("RandomForestDataGenerator")
     Common.setMaster(conf)
     val sc = new SparkContext(conf)
-    val numPartitions = Common.getNumOfPartitons(sc)
 
     var outputPath = params.dataPath
     var numExamples: Int = params.numExamples
     var numFeatures: Int = params.numFeatures
-    val eps = 3
+    val numPartitions = Common.getNumOfPartitons(sc)
+    val eps = 0.3
 
-    val data = generateLogisticRDD(sc, numExamples, numFeatures, eps, numPartitions)
+    val data = generateRFRDD(sc, numExamples, numFeatures, eps, numPartitions)
 
     data.saveAsObjectFile(outputPath)
 

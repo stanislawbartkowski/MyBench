@@ -45,30 +45,11 @@ object GradientBoostedTreeDataGenerator {
     data
   }
 
-
-  private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
-    banner("""
-    SparseNaiveBayes: an example naive Bayes app for LIBSVM data.
-
-    Example: spark-submit target/scala-2.11/benchmarkproj_2.11-0.1.jar  --dataPath <inputDir>
-
-    For usage see below:
-    """)
-    private val odataPath = opt[String]("dataPath",required = true)
-    private val onumExamples = opt[Int]("numExamples",required = true)
-    private val onumFeatures = opt[Int]("numFeatures",required = true)
-    verify()
-    val dataPath : String = odataPath.getOrElse("")
-    var numExamples: Int = onumExamples.getOrElse(200000)
-    var numFeatures: Int = onumFeatures.getOrElse(20)
-  }
-
-
   def main(args: Array[String]) {
     val conf = new SparkConf().setAppName("GradientBoostingTreeDataGenerator")
     Common.setMaster(conf)
     val sc = new SparkContext(conf)
-    val params = new Params(args)
+    val params = new FeatureParams(args,200000,20,"SparseNaiveBayes: an example naive Bayes app for LIBSVM data.")
 
 
     val eps = 0.3

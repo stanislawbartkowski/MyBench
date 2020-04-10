@@ -102,7 +102,7 @@ object LinearRegressionDataGenerator {
   }
 
   def main(args: Array[String]) {
-    val params = new Params(args)
+    val params = new FeatureParams(args,1000,50,"LR: an example data generator for Linear Regression")
 
     val conf = new SparkConf().setAppName("LinearRegressionDataGenerator")
     Common.setMaster(conf)
