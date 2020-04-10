@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/SVDDataGenerator.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/SVDExample.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LogisticRegression.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/LogisticRegression.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,33 +81,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.RandomForestClassification">
-    <configuration name="LinearRegression" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.LinearRegression" />
-      <module name="BenchmarkProj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LinearRegressionDataGenerator" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.bench.ml.LinearRegressionDataGenerator" />
-      <module name="BenchmarkProj" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.bench.ml.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.SVDExample">
     <configuration name="PCADataGenerator" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.bench.ml.PCADataGenerator" />
       <module name="BenchmarkProj" />
@@ -146,20 +121,46 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SVDDataGenerator" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.SVDDataGenerator" />
+      <module name="BenchmarkProj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SVDExample" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.bench.ml.SVDExample" />
+      <module name="BenchmarkProj" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.bench.ml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.LinearRegressionDataGenerator" />
-      <item itemvalue="Application.LinearRegression" />
       <item itemvalue="Application.PCADataGenerator" />
       <item itemvalue="Application.PCAExample" />
       <item itemvalue="Application.RandomForestClassification" />
+      <item itemvalue="Application.SVDDataGenerator" />
+      <item itemvalue="Application.SVDExample" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SVDExample" />
+        <item itemvalue="Application.SVDDataGenerator" />
         <item itemvalue="Application.RandomForestClassification" />
         <item itemvalue="Application.PCAExample" />
         <item itemvalue="Application.PCADataGenerator" />
-        <item itemvalue="Application.LinearRegression" />
-        <item itemvalue="Application.LinearRegressionDataGenerator" />
       </list>
     </recent_temporary>
   </component>
@@ -363,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586549548830</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="RandomForest">
+      <created>1586549687142</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1586549687142</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -395,10 +403,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2469" y="192" width="1273" height="827" key="#Project_Structure/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586278961450" />
-    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586549144837">
+    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586551637644">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549144837" />
+    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586551637644" />
     <state x="2298" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586284991680">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -411,26 +419,26 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586179045666" />
-    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2" timestamp="1586549547813">
+    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2" timestamp="1586549686438">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549547813" />
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586549515774">
+    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549686438" />
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586551564067">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549515774" />
-    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586549515774">
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586551564067" />
+    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586551564067">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549515774" />
-    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586549515774">
+    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586551564067" />
+    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586551564067">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549515774" />
-    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586549515774">
+    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586551564067" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586551564067">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549515774" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586551564067" />
     <state width="1669" height="312" key="GridCell.Tab.1.bottom" timestamp="1586289271615">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -451,10 +459,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585858394401" />
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586549558245">
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586549688994">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549558245" />
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586549688994" />
     <state x="2468" y="319" width="678" height="438" key="git4idea.merge.GitPullDialog" timestamp="1586476287228">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
