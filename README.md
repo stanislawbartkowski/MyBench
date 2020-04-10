@@ -27,7 +27,8 @@ The basic customization:<br>
  * *TESTLIST* List of tests to be executed. *TESTLIST* variable in *test.rc* contains list of all tests implemented so far. *TESTLIST* can contain a list of tests separated by comma or a single test.
  * *BENCHSIZE* Size of the test. Currently only *tiny* is supported
 
-
+# Run the test
+> ./runtest.sh
 
 
 
