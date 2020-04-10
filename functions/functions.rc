@@ -213,6 +213,37 @@ getconfvar() {
     echo $res
 }
 
+# ===========================
+# repeating spark
+# ===========================
+
+spark_prepare() {
+    local -r CLASS=$1
+    local -r BEGTEST=`testbeg prepare`
+    read -r NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR <<< `getconfvar examples features`
+    required_listofpars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
+    log_listofpars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
+
+
+    OPTIONS="--numExamples $NUM_EXAMPLES_LINEAR \
+             --numFeatures $NUM_FEATURES_LINEAR \
+             --dataPath $TMPINPUTDIR
+            "
+    sparkbenchjar $1 $OPTIONS
+    testend $BEGTEST
+}
+
+spark_run() {
+    local -r NAME=$1
+    local -r CLASS=$2
+    local -r BEGTEST=`testbeg $1`
+
+    OPTIONS="--dataPath $TMPINPUTDIR"
+
+    sparkbenchjar $CLASS $OPTIONS
+    testend $BEGTEST
+}
+
 
 # ==========================
 # Hadoop functions
