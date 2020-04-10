@@ -9,4 +9,7 @@ https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html
 
 ## Clone
 > git clone https://github.com/stanislawbartkowski/MyBench.git<br>
+> cd BenchmarkProj<br>
+> sbt assembly
+
 
