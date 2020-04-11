@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphDriver.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphNWeightDataGenerator.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphPregelNWeight.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphUtils.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphxNWeight.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__javax_xml_bind_jaxb_api_2_2_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__javax_xml_stream_stax_api_1_0_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__xerces_xercesImpl_2_9_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__xml_apis_xml_apis_1_3_04_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/SparseNaiveBayes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/SparseNaiveBayes.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +59,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Package Object" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -68,6 +78,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
@@ -76,8 +87,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Application.SVMWithSGDExample">
@@ -384,7 +395,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586553555403</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Bayes, remove required">
+      <created>1586556187268</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1586556187268</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -398,7 +416,8 @@
     <MESSAGE value="required = true" />
     <MESSAGE value="RandomForest" />
     <MESSAGE value="SVD" />
-    <option name="LAST_COMMIT_MESSAGE" value="SVD" />
+    <MESSAGE value="Bayes, remove required" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bayes, remove required" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2478" y="180" width="653" height="710" key="#DataGen" timestamp="1586180262272">
@@ -413,14 +432,14 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2478" y="180" width="653" height="710" key="#DataGen_(1)/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586183712286" />
-    <state x="2469" y="192" width="1273" height="827" key="#Project_Structure" timestamp="1586278961450">
+    <state x="2469" y="192" width="1273" height="827" key="#Project_Structure" timestamp="1586595871402">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2469" y="192" width="1273" height="827" key="#Project_Structure/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586278961450" />
-    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586553293252">
+    <state x="2469" y="192" width="1273" height="827" key="#Project_Structure/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586595871402" />
+    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1586596313610">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586553293252" />
+    <state x="2551" y="282" width="524" height="491" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586596313610" />
     <state x="2298" y="198" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586284991680">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -433,26 +452,26 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586179045666" />
-    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2" timestamp="1586553554945">
+    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2" timestamp="1586556186886">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586553554945" />
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586553511096">
+    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586556186886" />
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom" timestamp="1586562409934">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586553511095" />
-    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586553511095">
+    <state width="1669" height="253" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586562409934" />
+    <state width="1669" height="253" key="GridCell.Tab.0.center" timestamp="1586562409933">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586553511095" />
-    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586553511095">
+    <state width="1669" height="253" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586562409933" />
+    <state width="1669" height="253" key="GridCell.Tab.0.left" timestamp="1586562409933">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586553511095" />
-    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586553511095">
+    <state width="1669" height="253" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586562409933" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right" timestamp="1586562409933">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586553511095" />
+    <state width="1669" height="253" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586562409933" />
     <state width="1669" height="312" key="GridCell.Tab.1.bottom" timestamp="1586289271615">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -473,18 +492,18 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585858394401" />
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586553556827">
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1586556188464">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586553556827" />
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586556188464" />
     <state x="2468" y="319" width="678" height="438" key="git4idea.merge.GitPullDialog" timestamp="1586476287228">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2468" y="319" width="678" height="438" key="git4idea.merge.GitPullDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586476287228" />
-    <state x="2163" y="266" width="1345" height="556" key="new project wizard" timestamp="1585853521077">
+    <state x="2163" y="266" width="1345" height="556" key="new project wizard" timestamp="1586595805819">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2163" y="266" width="1345" height="556" key="new project wizard/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585853521077" />
+    <state x="2163" y="266" width="1345" height="556" key="new project wizard/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586595805819" />
     <state x="2504" y="245" key="run.anything.popup" timestamp="1586553379110">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>

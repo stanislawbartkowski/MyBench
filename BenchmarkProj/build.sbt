@@ -18,4 +18,7 @@ libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.3.2" % "provided
 // https://mvnrepository.com/artifact/org.rogach/scallop
 libraryDependencies += "org.rogach" %% "scallop" % "3.4.0"
 
+// https://mvnrepository.com/artifact/it.unimi.dsi/fastutil
+libraryDependencies += "it.unimi.dsi" % "fastutil" % "6.5.1"
+
 

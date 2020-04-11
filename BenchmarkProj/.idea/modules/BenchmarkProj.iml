@@ -57,6 +57,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sbt: io.dropwizard.metrics:metrics-jvm:3.1.5:jar" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="sbt: io.netty:netty-all:4.1.17.Final:jar" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="sbt: io.netty:netty:3.9.9.Final:jar" level="project" />
+    <orderEntry type="library" name="sbt: it.unimi.dsi:fastutil:6.5.1:jar" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="sbt: javax.activation:activation:1.1.1:jar" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="sbt: javax.annotation:javax.annotation-api:1.2:jar" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="sbt: javax.inject:javax.inject:1:jar" level="project" />
