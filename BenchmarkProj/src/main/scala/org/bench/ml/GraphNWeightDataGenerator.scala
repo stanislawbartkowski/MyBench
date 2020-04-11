@@ -28,6 +28,8 @@ import org.rogach.scallop.ScallopConf
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
+// --dataPath=input --modelPath=model --totalNumRecords 100
+
 object NWeightDataGenerator {
 
   private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
