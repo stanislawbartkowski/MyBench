@@ -28,23 +28,24 @@ import org.rogach.scallop.ScallopConf
 import scala.collection.mutable.ArrayBuffer
 import scala.util.Random
 
-// --dataPath=input --modelPath=model --totalNumRecords 100
+// --dataPath=input --modelPath=/home/sbartkowski/work/HiBench/sparkbench/graph/src/main/resources/nweight-user-features --totalNumRecords 100
 
 object NWeightDataGenerator {
 
   private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
-    banner("""
-    GBT: an example of Gradient Boosted Tree for classification
+    banner(
+      """
+    GBT: Graph data generator
 
     Example: spark-submit target/scala-2.11/benchmarkproj_2.11-0.1.jar  --dataPath <inputDir>
 
     For usage see below:
     """)
-    private val odataPath = opt[String]("dataPath",required = true)
-    private val omodelPath = opt[String]("modelPath",required = true)
-    private val ototalNumRecords = opt[Long]("totalNumRecords",required = true)
+    private val odataPath = opt[String]("dataPath", required = true)
+    private val omodelPath = opt[String]("modelPath", required = true)
+    private val ototalNumRecords = opt[Long]("totalNumRecords", required = true)
     verify()
-    val dataPath : String = odataPath.getOrElse("")
+    val dataPath: String = odataPath.getOrElse("")
     var modelPath = omodelPath.getOrElse("")
     var totalNumRecords: Long = ototalNumRecords.getOrElse(0)
   }
@@ -105,7 +106,11 @@ object NWeightDataGenerator {
         Seq((id1, (id2, weight)), (id2, (id1, weight)))
     }.groupByKey().map { case (id1, iter) =>
       s"$id1\t" +
-        iter.map { case (id, w) => f"$id:$w%.4f" }.mkString(",")
+        iter.map {
+//          case (id, w) => f"$id:$w%.4f" }
+              // formatting f is locale vulnerable, can contain , as decimal point
+          case (id, w) => id + ":" + w }
+          .mkString(",")
     }
 
     resultData.saveAsTextFile(outputPath)

@@ -71,6 +71,9 @@ object GraphxNWeight extends Serializable{
 
     //val start1 = System.currentTimeMillis
     val part = new HashPartitioner(numPartitions)
+    val r = sc.textFile(input)
+    val l1 = r.take(1)
+    val l2 = r.take(2)
     val edges = sc.textFile(input, numPartitions).flatMap { line =>
       val fields = line.split("\\s+", 2)
       val src = fields(0).trim.toLong

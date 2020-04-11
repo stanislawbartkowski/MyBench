@@ -12,8 +12,8 @@ assemblyJarName in assembly := "BenchJar.jar"
 libraryDependencies += "org.apache.spark" %% "spark-core" % "2.3.2" % "provided"
 
 // https://mvnrepository.com/artifact/org.apache.spark/spark-mllib
-libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.3.2" % "provided"
-//libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.3.2"
+// libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.3.2" % "provided"
+libraryDependencies += "org.apache.spark" %% "spark-mllib" % "2.3.2"
 
 // https://mvnrepository.com/artifact/org.rogach/scallop
 libraryDependencies += "org.rogach" %% "scallop" % "3.4.0"

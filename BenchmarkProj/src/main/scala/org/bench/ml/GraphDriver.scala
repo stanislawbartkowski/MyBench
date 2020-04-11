@@ -33,6 +33,8 @@ import org.rogach.scallop.ScallopConf
  * <vertex> <vertex1>:<weight1>,<vertex2>:<weight2> ...)
  */
 
+// --dataPath input --output output --step 3 --maxDegree 30 --storageLevel 7 --model graphx
+
 object NWeight extends Serializable{
 
   private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
