@@ -47,7 +47,6 @@ object NWeight extends Serializable{
     private val ooutput = opt[String]("output", required = true)
     private val ostep = opt[Int]("step", required = true)
     private val omaxDegree = opt[Int]("maxDegree", required = true)
-    private val onumPartitions = opt[Int]("numPartitions", required = true)
     private val ostorageLevel = opt[Int]("storageLevel", required = true)
     private val odisableKryo = opt[Boolean]("disableKryo", required = true)
     private val omodel = opt[String]("model", required = true)
@@ -56,7 +55,6 @@ object NWeight extends Serializable{
     val output  :String = ooutput.getOrElse("")
     val step: Int = ostep.getOrElse(-1)
     val maxDegree : Int = omaxDegree.getOrElse(-1)
-    val numPartitions : Int = onumPartitions.getOrElse(-1)
     val storageLevel : StorageLevel = ostorageLevel.getOrElse(-1) match {
       case 0 => StorageLevel.OFF_HEAP
       case 1 => StorageLevel.DISK_ONLY
@@ -82,26 +80,27 @@ object NWeight extends Serializable{
     val output =  params.output
     val step = params.step
     val maxDegree = params.maxDegree
-    val numPartitions = params.numPartitions
     val storageLevel = params.storageLevel
     val disableKryo = params.disableKryo
     val model = params.model
 
-    (input, output, step, maxDegree, numPartitions, storageLevel, disableKryo, model)
+    (input, output, step, maxDegree, storageLevel, disableKryo, model)
   }
 
   def main(args: Array[String]) {
-    val (input, output, step, maxDegree, numPartitions, storageLevel, disableKryo, model) = parseArgs(args)
+    val (input, output, step, maxDegree, storageLevel, disableKryo, model) = parseArgs(args)
 
     if(!disableKryo) {
       System.setProperty("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
     }
     val sparkConf = new SparkConf()
+    Common.setMaster(sparkConf)
     if (model.toLowerCase == "graphx")
       sparkConf.setAppName("NWeightGraphX")
     else
       sparkConf.setAppName("NWeightPregel")
     val sc = new SparkContext(sparkConf)
+    val numPartitions = Common.getNumOfPartitons(sc)
 
     if (model.toLowerCase == "graphx") {
       GraphxNWeight.nweight(sc, input, output, step, maxDegree, numPartitions, storageLevel)
