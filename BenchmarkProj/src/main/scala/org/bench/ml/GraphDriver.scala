@@ -17,8 +17,9 @@ package org.bench.ml
  * limitations under the License.
  */
 
-import org.apache.spark.{SparkContext, SparkConf}
+import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.storage.StorageLevel
+import org.rogach.scallop.ScallopConf
 
 /**
  * Compute NWeight for Graph G(V, E) as defined below.
@@ -34,18 +35,29 @@ import org.apache.spark.storage.StorageLevel
 
 object NWeight extends Serializable{
 
-  def parseArgs(args: Array[String]) = {
-    if (args.length < 7) {
-      System.err.println("Usage: <input> <output> <step> <max Out edges> " +
-        "<no. of result partitions> <storageLevel> <model>")
-      System.exit(1)
-    }
-    val input = args(0)
-    val output =  args(1)
-    val step = args(2).toInt
-    val maxDegree = args(3).toInt
-    val numPartitions = args(4).toInt
-    val storageLevel = args(5).toInt match {
+  private class Params(arguments: Seq[String]) extends ScallopConf(arguments) {
+    banner("""
+    GBT: an example of Gradient Boosted Tree for classification
+
+    Example: spark-submit target/scala-2.11/benchmarkproj_2.11-0.1.jar  --dataPath <inputDir>
+
+    For usage see below:
+    """)
+    private val odataPath = opt[String]("dataPath",required = true)
+    private val ooutput = opt[String]("output", required = true)
+    private val ostep = opt[Int]("step", required = true)
+    private val omaxDegree = opt[Int]("maxDegree", required = true)
+    private val onumPartitions = opt[Int]("numPartitions", required = true)
+    private val ostorageLevel = opt[Int]("storageLevel", required = true)
+    private val odisableKryo = opt[Boolean]("disableKryo", required = true)
+    private val omodel = opt[String]("model", required = true)
+    verify()
+    val dataPath : String = odataPath.getOrElse("")
+    val output  :String = ooutput.getOrElse("")
+    val step: Int = ostep.getOrElse(-1)
+    val maxDegree : Int = omaxDegree.getOrElse(-1)
+    val numPartitions : Int = onumPartitions.getOrElse(-1)
+    val storageLevel : StorageLevel = ostorageLevel.getOrElse(-1) match {
       case 0 => StorageLevel.OFF_HEAP
       case 1 => StorageLevel.DISK_ONLY
       case 2 => StorageLevel.DISK_ONLY_2
@@ -59,8 +71,21 @@ object NWeight extends Serializable{
       case 10 => StorageLevel.MEMORY_AND_DISK_SER_2
       case _ => StorageLevel.MEMORY_AND_DISK
     }
-    val disableKryo = args(6).toBoolean
-    val model = args(7)
+    val disableKryo :Boolean = odisableKryo.getOrElse(false)
+    val model : String  = omodel.getOrElse("")
+  }
+
+
+  def parseArgs(args: Array[String]) = {
+    val params = new Params(args)
+    val input = params.dataPath
+    val output =  params.output
+    val step = params.step
+    val maxDegree = params.maxDegree
+    val numPartitions = params.numPartitions
+    val storageLevel = params.storageLevel
+    val disableKryo = params.disableKryo
+    val model = params.model
 
     (input, output, step, maxDegree, numPartitions, storageLevel, disableKryo, model)
   }
