@@ -100,6 +100,7 @@ object NWeight extends Serializable{
     else
       sparkConf.setAppName("NWeightPregel")
     val sc = new SparkContext(sparkConf)
+    Common.setCheckPoint(sc)
     val numPartitions = Common.getNumOfPartitons(sc)
 
     if (model.toLowerCase == "graphx") {
