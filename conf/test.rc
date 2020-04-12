@@ -2,7 +2,7 @@
 TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr,pca,rf,svd,svm,graph,sql,phoenix
 
 # DATA SIZE
-LISTSIZE=tiny
+LISTSIZE=tiny,small,large,huge,gigantic,bigdata
 BENCHSIZE=tiny
 
 
