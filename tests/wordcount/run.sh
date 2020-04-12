@@ -5,8 +5,7 @@ WORDT=wordtable
 
 randomtext() {
   read -r SIZE MAPS <<< `getconfvar genword.size genword.maps`
-  required_listofpars SIZE MAPS
-  log_listofpars SIZE MAPS
+  verify_pars SIZE MAPS
   remove_tmp
 
   local -r BEGTEST=`testbeg randomtext`
@@ -16,9 +15,8 @@ randomtext() {
 
 wordcountmapreduce() {
   read -r MAPS REDUCES <<< `getconfvar wordcount.maps wordcount.reduces`
-  required_listofpars MAPS REDUCES
-  log_listofpars MAPS REDUCES
-
+  verify_pars MAPS REDUCES
+  
   local -r BEGTEST=`testbeg wordcountmapreduce`
   yarn_job_examples wordcount -D mapreduce.job.maps=$MAPS -D mapreduce.job.reduces=$REDUCES ${TMPINPUTDIR} $TMPOUTPUTDIR
   testend $BEGTEST
@@ -28,10 +26,10 @@ runhivewordcount() {
   local -r BEGTEST=`testbeg hivewordcount`
   hivesql "DROP TABLE IF EXISTS $WORDT"
   hivesql "CREATE EXTERNAL TABLE $WORDT (line string) STORED AS SEQUENCEFILE LOCATION '${TMPINPUTDIR}'"
+  hive_verifynonzero $WORDT
+
   hivesql "with xx as (select explode(split(line,' ')) as word from $WORDT) select word,count(*) from xx group by word"
 
-  hive_verifynonzero $WORDT
-  
   testend $BEGTEST
 }
 
@@ -59,8 +57,7 @@ sparkwordcount() {
   remove_tmpoutput
   local -r BEGTEST=`testbeg sparkwordcount`
   read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
-  required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
-  log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+  verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
 
 
   cat << EOF | cat >$TMP
@@ -86,8 +83,7 @@ sparksqlwordcount() {
   rmr_hdfs $TMPOUTPUTDIR
   local -r BEGTEST=`testbeg sparksqlwordcount`
   read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar sparksql.executor.cores sparksql.driver.cores sparksql.driver.memory sparksql.num.executors`
-  required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
-  log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+  verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
 
   cat << EOF | cat >$TMP
 
