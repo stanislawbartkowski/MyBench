@@ -18,6 +18,7 @@ HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-example
 PHOENIXDIR=/usr/hdp/current/phoenix-client
 PHOENIXLINE=$PHOENIXDIR/bin/sqlline.py
 TEMPDIR=/tmp
+NOTRANSACTIONAL="TBLPROPERTIES('transactional'='false')"
 
 BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchJar.jar
 
