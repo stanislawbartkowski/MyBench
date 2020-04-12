@@ -26,6 +26,21 @@ The MyBench test is controlled by *test.rc* environment settings. Any variable i
 The basic customization:<br>
  * *TESTLIST* List of tests to be executed. *TESTLIST* variable in *test.rc* can be used as a reference, it contains a list of all tests implemented so far. *TESTLIST* in *custom.rc* is the list of tests to be executed.
  * *BENCHSIZE* Size of the test. Currently only *tiny* is supported
+ 
+## Privileges
+
+### HDFS
+The MyBench temporary HDFS space is determined by *TMPBASEIDIR* variable, default is */tmp/bench*
+### Hive
+If Hive *hive.server2.enable.doAs* impersonation is not set, give *hive* user *read/write/execute* permissions to *TMPBASEDIR* HDFS directory.
+### HBase, Phoenix
+As *hbase* user, create additional *bench* namespace<br>
+> hbase shell<br>
+> create_namespace 'bench'
+
+Give the user running MyBench test, the full authority in *SYSTEM.\** and *BENCH.\** namespace.
+### Kerberos
+If the cluster is Kerberized, obtain valid Kerberos ticket before running the test.
 
 # Run test suite
 > ./runtest.sh<br>
