@@ -29,6 +29,9 @@ runhivewordcount() {
   hivesql "DROP TABLE IF EXISTS $WORDT"
   hivesql "CREATE EXTERNAL TABLE $WORDT (line string) STORED AS SEQUENCEFILE LOCATION '${TMPINPUTDIR}'"
   hivesql "with xx as (select explode(split(line,' ')) as word from $WORDT) select word,count(*) from xx group by word"
+
+  hive_verifynonzero $WORDT
+  
   testend $BEGTEST
 }
 

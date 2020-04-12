@@ -297,6 +297,11 @@ hivesql() {
     execute_withlog ${CMD}
 }
 
+hivesqlscript() {
+    local CMD="beeline -f $1"
+    execute_withlog ${CMD}
+}
+
 pigscript() {
     local CMD="pig -f $1"
     execute_withlog ${CMD}
@@ -325,6 +330,11 @@ sparksql() {
     execute_withlog ${CMD}
 }
 
+sparksqlcommand() {
+    local CMD="spark-sql --master yarn -e \"$@\""
+    execute_withlog ${CMD}
+}
+
 hadoopbenchjar() {
     read -r NUM_MAPS NUM_REDS <<< `getconfvar map.parallelism shuffle.parallelism`
     verify_pars NUM_MAPS NUM_REDS
@@ -339,3 +349,33 @@ mapredtest() {
     local CMD="HADOOP_CLASSPATH=$JUNITJAR yarn jar $HADOOPMAPREDUCETEST $@"
     execute_withlog ${CMD}
 }
+
+# ==========================
+# verify sql results
+# ==========================
+
+sql_verifynonzero() {
+    local -r shellcommand=$1
+    local -r table=$2
+    local -r TMP=`crtemp`
+    local -r TMP1=`crtemp`
+
+    $shellcommand "SELECT 'NUMBEROFROWS:' || count(*) from $table" >$TMP
+
+    cat $TMP | grep "NUMBEROFROWS" | tr -d "\| " | cut -d ":" -f2 >$TMP1
+    [ $? -eq 0 ] || logfail "Failed while extracting the result"
+
+    # second line contains number of rows
+    local -r NUMOFROWS=`cat $TMP1 | tail -n1`
+
+    [ $NUMOFROWS -gt 0 ]  || logfail "Empty result"
+}
+
+hive_verifynonzero() {
+    sql_verifynonzero hivesql $1
+}
+
+spark_verifynonzero() {
+    sql_verifynonzero sparksqlcommand $1
+}
+
