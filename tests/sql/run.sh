@@ -1,26 +1,6 @@
 source $FUNCTIONSRC
 setenv
 
-prepare() {
-    local -r BEGTEST=`testbeg prepare`
-
-    HIVE_BASE_HDFS=$TMPBASEDIR/hive
-    HIVE_INPUT=$TMPINPUTDIR
-    PAGES=120
-    USERVISITS=1000
-
-    OPTIONS="hive \
-        -b ${HIVE_BASE_HDFS} \
-        -n $HIVE_INPUT \
-        -p $PAGES \
-        -v $USERVISITS \
-        -o sequence"
-
- hadoopbenchjar $OPTIONS
-
- testend $BEGTEST    
-}
-
 runsqlscan() {
     local -r begname=$1
     local -r command=$2
@@ -128,7 +108,7 @@ runscan() {
 
 run() {
     remove_tmp
-    prepare
+    prepare_sql
     runaggregation
     runjoin
     runscan
@@ -136,7 +116,7 @@ run() {
 
 test() {
 #    remove_tmp
-#    prepare
+#    prepare_sql
 #    runaggregation
 #    runjoin
     runscan

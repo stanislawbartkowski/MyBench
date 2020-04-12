@@ -1,5 +1,5 @@
 # list of all tests
-TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr,pca,rf,svd,svm,graph,sql
+TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr,pca,rf,svd,svm,graph,sql,phoenix
 
 # DATA SIZE
 LISTSIZE=tiny
@@ -15,6 +15,9 @@ TMPOUTPUT1DIR=$TMPBASEDIR/output1dir
 JUNITJAR=/usr/hdp/current/hbase-client/lib/junit-4.12.jar
 HADOOPMAPREDUCETEST=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient-tests.jar
 HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
+PHOENIXDIR=/usr/hdp/current/phoenix-client
+PHOENIXLINE=$PHOENIXDIR/bin/sqlline.py
+TEMPDIR=/tmp
 
 BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchJar.jar
 
