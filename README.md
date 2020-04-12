@@ -35,6 +35,8 @@ The MyBench temporary HDFS space is determined by *TMPBASEIDIR* variable, defaul
 If Hive *hive.server2.enable.doAs* impersonation is not set, give *hive* user *read/write/execute* permissions to *TMPBASEDIR* HDFS directory.
 ### HBase, Phoenix
 Give the user running the MyBench authority in *SYSTEM.* namespace.
+### Kerberos
+If the cluster is Kerberized, obtain valid Kerberos ticket before running the test.
 
 # Run test suite
 > ./runtest.sh<br>
