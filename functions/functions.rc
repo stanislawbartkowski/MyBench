@@ -120,6 +120,7 @@ remove_tmpoutput1() {
   rmr_hdfs $TMPOUTPUT1DIR
 }
 
+
 remove_tmp() {
   rmr_hdfs $TMPBASEDIR
 }
@@ -163,6 +164,10 @@ log_listofpars() {
     done
 }
 
+verify_pars() {
+  required_listofpars $@
+  log_listofpars $@
+}  
 
 
 existfile() {
@@ -232,9 +237,7 @@ spark_prepare() {
     local -r CLASS=$1
     local -r BEGTEST=`testbeg prepare`
     read -r NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR <<< `getconfvar examples features`
-    required_listofpars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
-    log_listofpars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
-
+    verify_pars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
 
     OPTIONS="--numExamples $NUM_EXAMPLES_LINEAR \
              --numFeatures $NUM_FEATURES_LINEAR \
@@ -260,9 +263,22 @@ spark_run() {
 # Hadoop functions
 # ==========================
 
+copy_tohdfs() {
+    local -r SOURCE=$1
+    local -r DESTDIR=$2
+    local CMD="hdfs dfs -copyFromLocal $SOURCE $DESTDIR"
+    execute_withlog ${CMD}
+}
+
 rmr_hdfs() {
     local -r DIR=$1
     local CMD="hdfs dfs -rm -r -f -skipTrash $DIR"
+    execute_withlog ${CMD}
+}
+
+mkdir_hdfs() {
+    local -r DIR=$1
+    local CMD="hdfs dfs -mkdir -p $DIR"
     execute_withlog ${CMD}
 }
 
@@ -288,8 +304,7 @@ pigscript() {
 
 sparkshell() {
     read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
-    required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
-    log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
 
     local CMD="echo :quit | spark-shell --master yarn -i --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $@"
     execute_withlog ${CMD}
@@ -299,8 +314,7 @@ sparkbenchjar() {
     local -r CLASS=$1
     shift
     read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
-    required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
-    log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
 
     local CMD="spark-submit --class org.bench.ml.$CLASS --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
     execute_withlog ${CMD}
@@ -313,9 +327,8 @@ sparksql() {
 
 hadoopbenchjar() {
     read -r NUM_MAPS NUM_REDS <<< `getconfvar map.parallelism shuffle.parallelism`
-    required_listofpars NUM_MAPS NUM_REDS
-    log_listofpars NUM_MAPS NUM_REDS
-    local -r ACTION=$1
+    verify_pars NUM_MAPS NUM_REDS
+    local -r ACTION=$1 
     shift
 
     local CMD="yarn jar $BENCHMARKJAR org.bench.mr.DataGen -t $ACTION -m ${NUM_MAPS} -r ${NUM_REDS} $@"
