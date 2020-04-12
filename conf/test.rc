@@ -27,6 +27,12 @@ spark_driver_cores=2
 spark_driver_memory=2g
 spark_num_executors=2
 
+sparksql_executor_cores=2
+sparksql_driver_cores=2
+sparksql_driver_memory=2g
+sparksql_num_executors=2
+
+
 map_parallelism=8
 shuffle_parallelism=8
 

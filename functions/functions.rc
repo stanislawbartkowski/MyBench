@@ -400,12 +400,18 @@ sparkbenchjar() {
 }
 
 sparksql() {
-    local CMD="echo exit | spark-sql --master yarn -i $@"
+    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar sparksql.executor.cores sparksql.driver.cores sparksql.driver.memory sparksql.num.executors`
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
+
+    local CMD="echo exit | spark-sql --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
     execute_withlog ${CMD}
 }
 
 sparksqlcommand() {
-    local CMD="spark-sql --master yarn -e \"$@\""
+    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar sparksql.executor.cores sparksql.driver.cores sparksql.driver.memory sparksql.num.executors`
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
+    
+    local CMD="spark-sql --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE --master yarn -e \"$@\""
     execute_withlog ${CMD}
 }
 

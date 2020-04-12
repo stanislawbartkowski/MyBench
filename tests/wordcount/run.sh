@@ -109,11 +109,13 @@ run() {
 }
 
 test() {
-  randomtext
-  wordcountmapreduce
-  runhivewordcount
+#  randomtext
+#  wordcountmapreduce
+#  runhivewordcount
+  sparksqlwordcount
 }
 
 run
+#test
 
 exit 0
