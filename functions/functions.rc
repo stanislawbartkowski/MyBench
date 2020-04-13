@@ -355,8 +355,23 @@ phoenix_import() {
    execute_withlog ${CMD}
 }   
 
+phoenix_script() {
+#    local CMD="echo \"$1\" | $PHOENIXLINE" 
+    local CMD="$PHOENIXLINE $ZOOKEEPER $1"
+    set -f
+    execute_withlog ${CMD}
+}
+
 phoenix_command() {
-    local CMD="echo \"$1\" | $PHOENIXLINE"
+    local -r TMP=`crtemp`
+    echo $1 >$TMP
+    phoenix_script $TMP
+}
+
+
+removeit_phoenix_command() {
+#    local CMD="echo \"$1\" | $PHOENIXLINE" 
+    local CMD="$PHOENIXLINE $ZOOKEEPER $1"
     set -f
     execute_withlog ${CMD}
 }

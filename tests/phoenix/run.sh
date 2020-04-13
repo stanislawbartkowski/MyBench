@@ -19,13 +19,13 @@ EOF
 
 create_phoenix_uservisits() {
     local -r TABLE=$1
-    phoenix_command "DROP TABLE IF EXISTS bench.$TABLE"
+    phoenixremovetable bench.$TABLE
     phoenix_command "CREATE TABLE bench.$TABLE (sourceIP varchar primary key,destURL varchar,visitDate varchar,adRevenue DOUBLE,userAgent varchar,countryCode varchar,languageCode varchar,searchWord varchar,duration INTEGER)"
 }
 
 create_phoenix_tables() {
     create_phoenix_uservisits uservisits
-    phoenix_command "DROP TABLE IF EXISTS bench.rankings"
+    phoenixremovetable bench.rankings
     phoenix_command "CREATE TABLE bench.rankings (pageURL varchar primary key, pageRank INTEGER, avgDuration INTEGER)"
 }
 
@@ -49,7 +49,7 @@ phoenix_scantest() {
 
 phoenix_aggregatetest() {
     local -r BEGTEST=`testbeg aggregatetest`
-    phoenix_command "DROP TABLE IF EXISTS bench.uservisits_aggre"
+    phoenixremovetable bench.uservisits_aggre
     phoenix_command "CREATE TABLE bench.uservisits_aggre ( sourceIP VARCHAR primary key, sumAdRevenue DOUBLE)"
     phoenix_command "UPSERT INTO bench.uservisits_aggre SELECT sourceIP, SUM(adRevenue) FROM bench.uservisits GROUP BY sourceIP"
     phoenix_verifynonzero bench.uservisits_aggre
@@ -59,7 +59,7 @@ phoenix_aggregatetest() {
 
 phoenix_jointest() {
     local -r BEGTEST=`testbeg jointest`
-    phoenix_command "DROP TABLE IF EXISTS bench.uservisits_join"
+    phoenixremovetable bench.uservisits_join
     phoenix_command "CREATE TABLE bench.uservisits_join ( sourceIP VARCHAR primary key, avgPageRank DOUBLE, sumAdRevenue DOUBLE)"
 
     phoenix_command "UPSERT INTO bench.uservisits_join SELECT sourceIP, avg(pageRank), sum(adRevenue) as totalRevenue FROM bench.rankings R JOIN (SELECT sourceIP, destURL, adRevenue FROM bench.uservisits UV WHERE UV.visitDate >= '1999-01-01' AND UV.visitDate <= '2000-01-01') NUV ON (R.pageURL = NUV.destURL) group by sourceIP order by totalRevenue DESC"
@@ -81,7 +81,7 @@ run() {
 test() {
 #    remove_tmp
 #    prepare_sql   
-#    prepare_data
+   prepare_data
    phoenix_scantest
    phoenix_aggregatetest
    phoenix_jointest
@@ -96,6 +96,7 @@ case $1 in
   cleanup) cleanup;; 
   *) 
     run;;
+#    test;;
 esac
 
 # test

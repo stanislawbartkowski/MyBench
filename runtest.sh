@@ -38,9 +38,10 @@ verifyenv() {
     log "Check environment"
     required_listofvars TESTLIST SANDBOX DIRTEST TMPOUTPUTDIR LISTSIZE BENCHSIZE TMPINPUTDIR
 
-    required_listofvars HADOOPEXAMPLES JUNITJAR HADOOPMAPREDUCETEST
+    required_listofvars HADOOPEXAMPLES JUNITJAR HADOOPMAPREDUCETEST BENCHMARKJAR TMPBASEDIR
+    required_listofvars PHOENIXDIR ZOOKEEPER
     # check if SIZE on the list
-    onthelist $BENCHSIZE $LISTSIZE
+    onthelist $BENCHSIZE $LISTSIZE 
 
     existfile conf/test.rc
     for dir in ${TESTLIST//,/ }; do

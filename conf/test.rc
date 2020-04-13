@@ -19,6 +19,8 @@ PHOENIXDIR=/usr/hdp/current/phoenix-client
 PHOENIXLINE=$PHOENIXDIR/bin/sqlline.py
 TEMPDIR=/tmp
 NOTRANSACTIONAL="TBLPROPERTIES('transactional'='false')"
+ZOOKEEPER=
+# ZOOKEEPER=mdp1.sb.com,mdp2.sb.com,mdp3.sb.com
 
 BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchJar.jar
 
