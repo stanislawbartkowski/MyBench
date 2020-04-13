@@ -6,4 +6,5 @@
 /target
 /o
 /a
-/nohup.out
+/nohup.outA
+/derby.log
