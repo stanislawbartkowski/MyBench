@@ -211,6 +211,7 @@ getconfvar() {
         [ -z "$v" ] && continue
         arr[$k]=$v
     done <$ENVCONF
+
     res=""
     while true; do
         key=$1
@@ -218,7 +219,14 @@ getconfvar() {
         val=${arr[$BENCHSIZE.$key]}
         if [ -z "$val" ]; then val=${arr[$key]}; fi
 
-        # check global variable
+        # check global replaced
+        if [ -z "$val" ]; then 
+          # replace . with _
+          read EVAR <<< `echo $BENCHSIZE.$key | tr . _`
+          val="${!EVAR}"        
+        fi
+
+        # check global not replace variable
         if [ -z "$val" ]; then 
           # replace . with _
           read EVAR <<< `echo $key | tr . _`
@@ -242,8 +250,6 @@ prepare_sql() {
 
     HIVE_BASE_HDFS=$TMPBASEDIR/hive
     HIVE_INPUT=$TMPINPUTDIR
-#    PAGES=120
-#    USERVISITS=1000
 
     OPTIONS="hive \
         -b ${HIVE_BASE_HDFS} \
@@ -385,7 +391,7 @@ sparkshell() {
     read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
     verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
 
-    local CMD="echo :quit | spark-shell --master yarn -i --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $@"
+    local CMD="echo :quit | spark-shell --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
     execute_withlog ${CMD}
 }
 
@@ -413,6 +419,27 @@ sparksqlcommand() {
     
     local CMD="spark-sql --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE --master yarn -e \"$@\""
     execute_withlog ${CMD}
+}
+
+sqlremovetable() {
+    local -r COMMAND=$1
+    while true; do
+        shift
+        [ -z "$1" ] && break
+        $COMMAND "DROP TABLE IF EXISTS $1"
+    done
+}
+
+sparksqlremovetable() {
+    sqlremovetable sparksqlcommand $@
+}
+
+hivesqlremovetable() {
+    sqlremovetable hivesql $@
+}
+
+phoenixremovetable() {
+    sqlremovetable phoenix_command $@
 }
 
 hadoopbenchjar() {

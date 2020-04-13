@@ -115,7 +115,18 @@ test() {
   sparksqlwordcount
 }
 
-run
+cleanup() {
+  log "Remove spark and hive $WORDT table"
+  sparksqlremovetable $WORDT
+  hivesqlremovetable $WORDT
+}
+
+case $1 in 
+  cleanup) cleanup;; 
+  *) 
+    run;;
+esac
+
 #test
 
 exit 0

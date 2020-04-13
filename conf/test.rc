@@ -32,10 +32,15 @@ spark_driver_cores=4
 spark_driver_memory=4g
 spark_num_executors=6
 
-sparksql_executor_cores=2
-sparksql_driver_cores=2
-sparksql_driver_memory=2g
-sparksql_num_executors=2
+sparksql_executor_cores=4
+sparksql_driver_cores=4
+sparksql_driver_memory=4g
+sparksql_num_executors=6
+
+tiny_sparksql_executor_cores=2
+tiny_sparksql_driver_cores=2
+tiny_sparksql_driver_memory=2g
+tiny_sparksql_num_executors=2
 
 
 map_parallelism=8

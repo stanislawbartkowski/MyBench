@@ -10,6 +10,7 @@ setenv
 
 DIRTEST=tests
 DISABLE=disable
+CLEAN=clean
 SANDBOX=sandbox
 
 export TMPSTORE
@@ -67,12 +68,13 @@ preparesandbox() {
 
 runsingletest() {
     export TESTNAME=$1
-    log "Execute $TESTNAME"
+    export PAR=$2
+    log "Execute $TESTNAME $PAR"
     cd $SANDBOX
-    if ./run.sh; then 
-        log "$TESTNAME passed"
+    if ./run.sh $PAR; then 
+        log "$TESTNAME $PAR passed"
     else     
-        logfail "$TESTNAME failed"
+        logfail "$TESTNAME $PAR failed"
     fi
     cd $BASEDIR
 }
@@ -86,9 +88,48 @@ runtests() {
     done
 }
 
-verifyenv
-setuplogging
+go() {
 
-runtests
+    verifyenv
+    setuplogging
 
-removetemp
+    runtests
+
+    removetemp
+}
+
+help() {
+    echo "./runtest.sh clean "
+    echo "   cleanup all HDFS data in TESTLIST"
+    exit 1
+}
+
+cleanproc() {
+    remove_tmp
+
+    log "Run cleanup procedure across tests"
+    for test in ${TESTLIST//,/ }; do
+        [ -f $DIRTEST/$test/$DISABLE ] && continue
+        if [ -f $DIRTEST/$test/$CLEAN ]; then
+            preparesandbox $test
+            runsingletest $test cleanup
+        fi
+    done
+
+}
+
+cleandata() {
+    log "Clean HDFS data"
+    verifyenv
+    setuplogging
+
+    cleanproc
+
+    removetemp
+}
+
+case $1 in
+  cleanup) cleandata;;
+  "") go ;;
+  *) help;;
+esac

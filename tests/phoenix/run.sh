@@ -87,7 +87,17 @@ test() {
    phoenix_jointest
 }
 
-run
+cleanup() {
+    hivesqlremovetable  uservisits rankings
+    phoenixremovetable bench.uservisits_join bench.uservisits_aggre bench.rankings bench.uservisits bench.uservisits_copy
+}
+
+case $1 in 
+  cleanup) cleanup;; 
+  *) 
+    run;;
+esac
+
 # test
 
 exit 0

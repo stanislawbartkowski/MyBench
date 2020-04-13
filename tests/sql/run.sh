@@ -121,8 +121,18 @@ test() {
 #    runaggregation
     runjoin
 #    runscan
-   
+  
 }
 
-run
+cleanup() {
+    sparksqlremovetable uservisits_copy rankings_uservisits_join uservisits_aggre uservisits rankings 
+    hivesqlremovetable  uservisits_copy rankings_uservisits_join uservisits_aggre uservisits rankings
+}
+
+case $1 in 
+  cleanup) cleanup;; 
+  *) 
+    run;;
+esac
+
 #test
