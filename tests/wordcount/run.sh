@@ -123,7 +123,8 @@ test() {
 #  wordcountmapreduce
 #  runhivewordcount
 #  sparksqlwordcount
-  sparkwordcount
+#  sparkwordcount
+  sparksqlwordcount
 }
 
 cleanup() {
