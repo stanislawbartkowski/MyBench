@@ -6,7 +6,7 @@ prepare() {
 }
 
 runlogistic() {
-    spark_run runpca LogisticRegression
+    spark_run runlr LogisticRegression
 }
 
 run() {
