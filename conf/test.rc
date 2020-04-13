@@ -27,11 +27,13 @@ BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchJar.jar
 tiny_spark_executor_cores=2
 tiny_spark_driver_cores=2
 tiny_spark_driver_memory=2g
+tiny_spark_executor_memory=2g
 tiny_spark_num_executors=2
 
 spark_executor_cores=4
 spark_driver_cores=4
 spark_driver_memory=4g
+spark_executor_memory=4g
 spark_num_executors=6
 
 sparksql_executor_cores=4

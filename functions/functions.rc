@@ -424,10 +424,10 @@ removeit_sparkshell() {
 sparkbenchjar() {
     local -r CLASS=$1
     shift
-    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
-    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
+    read -r EXECORES EXEMEMORY DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.executor.memory spark.driver.cores spark.driver.memory spark.num.executors`
+    verify_pars EXECORES EXEMEMORY DRVCORES DRVMEMORY NUMEXE
 
-    local CMD="spark-submit --class org.bench.ml.$CLASS --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
+    local CMD="spark-submit --class org.bench.ml.$CLASS --master yarn --executor-cores $EXECORES --executor-memory $EXEMEMORY --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
     execute_withlog ${CMD}
 }
 
