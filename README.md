@@ -27,6 +27,13 @@ The basic customization:<br>
  * *TESTLIST* List of tests to be executed. *TESTLIST* variable in *test.rc* can be used as a reference, it contains a list of all tests implemented so far. *TESTLIST* in *custom.rc* is the list of tests to be executed.
  * *BENCHSIZE* Size of the test. Currently only *tiny* is supported
  
+**HBase Phoenix**<br>
+* ZOOKEEPER variable: set ZOOKEEPER variable having the hostname of Zookeeper cluster. It is necessary to run Phoenix command line tool
+<br>
+> /usr/hdp/current/phoenix-client/bin//usr/hdp/current/phoenix-client $ZOOKEEPER /script file/<br>
+<br>
+* Increase "Phoenix Query Timeout" config parameters from default 1 minute. For instance: 5 minutes.
+ 
 ## Privileges
 
 ### HDFS
