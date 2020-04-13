@@ -56,9 +56,6 @@ sparkwordcount() {
   local -r TMP=`crtemp`
   remove_tmpoutput
   local -r BEGTEST=`testbeg sparkwordcount`
-  read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
-  verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
-
 
   cat << EOF | cat >$TMP
 
@@ -73,7 +70,7 @@ wc.saveAsTextFile("$TMPOUTPUTDIR")
 
 EOF
 
-  sparkshell $TMP --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE
+  sparkshell $TMP
   testend $BEGTEST
 }
 
@@ -82,8 +79,6 @@ sparksqlwordcount() {
   local -r TMP=`crtemp`
   rmr_hdfs $TMPOUTPUTDIR
   local -r BEGTEST=`testbeg sparksqlwordcount`
-  read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar sparksql.executor.cores sparksql.driver.cores sparksql.driver.memory sparksql.num.executors`
-  verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
 
   cat << EOF | cat >$TMP
 
@@ -93,7 +88,7 @@ with xx as (select explode(split(line,' ')) as word from $WORDT) select word,cou
 
 EOF
 
-  sparksql $TMP --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE
+  sparksql $TMP 
   testend $BEGTEST
 }
 
