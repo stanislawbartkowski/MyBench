@@ -1,16 +1,6 @@
 source $FUNCTIONSRC
 setenv
 
-old_prepare() {
-    local -r BEGTEST=`testbeg prepare`
-    read -r NUM_EXAMPLES_GBT NUM_FEATURES_GBT <<< `getconfvar examples features`
-    required_listofpars NUM_EXAMPLES_GBT NUM_FEATURES_GBT
-    log_listofpars NUM_EXAMPLES_GBT NUM_FEATURES_GBT
-
-    sparkbenchjar GradientBoostedTreeDataGenerator  --dataPath $TMPINPUTDIR --numExamples $NUM_EXAMPLES_GBT --numFeatures $NUM_FEATURES_GBT
-    testend $BEGTEST
-}
-
 prepare() {
    spark_prepare GradientBoostedTreeDataGenerator
 }

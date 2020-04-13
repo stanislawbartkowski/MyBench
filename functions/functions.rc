@@ -22,6 +22,8 @@ logfail() {
 
 execute_withlog() {
     local -r CMD="$@"
+    # important: some command are assuming the first line in the output is not relevant and remove it
+    # do not remove this log $CMD below
     log "$CMD"
     eval $CMD
     if [ $? -ne 0 ]; then
@@ -120,6 +122,7 @@ remove_tmpoutput1() {
   rmr_hdfs $TMPOUTPUT1DIR
 }
 
+
 remove_tmp() {
   rmr_hdfs $TMPBASEDIR
 }
@@ -163,6 +166,10 @@ log_listofpars() {
     done
 }
 
+verify_pars() {
+  required_listofpars $@
+  log_listofpars $@
+}  
 
 
 existfile() {
@@ -204,6 +211,7 @@ getconfvar() {
         [ -z "$v" ] && continue
         arr[$k]=$v
     done <$ENVCONF
+
     res=""
     while true; do
         key=$1
@@ -211,7 +219,14 @@ getconfvar() {
         val=${arr[$BENCHSIZE.$key]}
         if [ -z "$val" ]; then val=${arr[$key]}; fi
 
-        # check global variable
+        # check global replaced
+        if [ -z "$val" ]; then 
+          # replace . with _
+          read EVAR <<< `echo $BENCHSIZE.$key | tr . _`
+          val="${!EVAR}"        
+        fi
+
+        # check global not replace variable
         if [ -z "$val" ]; then 
           # replace . with _
           read EVAR <<< `echo $key | tr . _`
@@ -228,13 +243,32 @@ getconfvar() {
 # repeating spark
 # ===========================
 
+prepare_sql() {
+    local -r BEGTEST=`testbeg prepare`
+    read -r PAGES USERVISITS <<< `getconfvar pages uservisits`
+    verify_pars PAGES USERVISITS
+
+    HIVE_BASE_HDFS=$TMPBASEDIR/hive
+    HIVE_INPUT=$TMPINPUTDIR
+
+    OPTIONS="hive \
+        -b ${HIVE_BASE_HDFS} \
+        -n $HIVE_INPUT \
+        -p $PAGES \
+        -v $USERVISITS \
+        -o sequence"
+
+ hadoopbenchjar $OPTIONS
+
+ testend $BEGTEST    
+}
+
+
 spark_prepare() {
     local -r CLASS=$1
     local -r BEGTEST=`testbeg prepare`
     read -r NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR <<< `getconfvar examples features`
-    required_listofpars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
-    log_listofpars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
-
+    verify_pars NUM_EXAMPLES_LINEAR NUM_FEATURES_LINEAR
 
     OPTIONS="--numExamples $NUM_EXAMPLES_LINEAR \
              --numFeatures $NUM_FEATURES_LINEAR \
@@ -260,9 +294,22 @@ spark_run() {
 # Hadoop functions
 # ==========================
 
+copy_tohdfs() {
+    local -r SOURCE=$1
+    local -r DESTDIR=$2
+    local CMD="hdfs dfs -copyFromLocal $SOURCE $DESTDIR"
+    execute_withlog ${CMD}
+}
+
 rmr_hdfs() {
     local -r DIR=$1
     local CMD="hdfs dfs -rm -r -f -skipTrash $DIR"
+    execute_withlog ${CMD}
+}
+
+mkdir_hdfs() {
+    local -r DIR=$1
+    local CMD="hdfs dfs -mkdir -p $DIR"
     execute_withlog ${CMD}
 }
 
@@ -281,6 +328,60 @@ hivesql() {
     execute_withlog ${CMD}
 }
 
+hiveexporttable() {
+    local -r TABLE=$1
+    local -r DIR=$2
+    local -r WHAT=$3
+    # block wildcard expansion
+    set -f
+    local -r SQL='select * from $TABLE'
+    local CMD="beeline --outputformat=csv2 -e \" $SQL \" "
+    # remove first 2 lines
+    if [ $WHAT = "dir" ]; then
+        local -r P=$PWD
+        cd $DIR
+        execute_withlog "$CMD" | sed 1,2d | split - -l 2000000
+        cd $P
+    fi  
+    [ $WHAT = "file" ] && execute_withlog "$CMD" | sed 1,2d >$DIR 
+    set +f
+}
+
+
+phoenix_import() {
+   local -r CSVFILE=$1
+   local -t PHOTABLE=$2
+   local CMD="HADOOP_CLASSPATH=/etc/hbase/conf yarn jar $PHOENIXDIR/phoenix-client.jar org.apache.phoenix.mapreduce.CsvBulkLoadTool  -d ',' --table $PHOTABLE --input $CSVFILE"
+   execute_withlog ${CMD}
+}   
+
+phoenix_command() {
+    local CMD="echo \"$1\" | $PHOENIXLINE"
+    set -f
+    execute_withlog ${CMD}
+}
+
+hive_phoeniximport() {
+    local -r HIVETABLE=$1
+    local -r PHOTABLE=$2
+    # create temporary directory
+    local -r DIR=`mktemp -d -p $TEMPDIR`
+    local -r TFILE=$TMPBASEDIR/phoenix.csv
+    hiveexporttable $HIVETABLE $DIR dir
+    set +f
+    for f in $DIR/*; do 
+        rmr_hdfs $TFILE
+        copy_tohdfs $f $TFILE
+        phoenix_import $TFILE $PHOTABLE
+    done
+    rm -rf $DIR
+}
+
+hivesqlscript() {
+    local CMD="beeline -f $1"
+    execute_withlog ${CMD}
+}
+
 pigscript() {
     local CMD="pig -f $1"
     execute_withlog ${CMD}
@@ -288,10 +389,9 @@ pigscript() {
 
 sparkshell() {
     read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
-    required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
-    log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
 
-    local CMD="echo :quit | spark-shell --master yarn -i --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $@"
+    local CMD="echo :quit | spark-shell --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
     execute_withlog ${CMD}
 }
 
@@ -299,23 +399,53 @@ sparkbenchjar() {
     local -r CLASS=$1
     shift
     read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
-    required_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
-    log_listofpars EXECORES DRVCORES DRVMEMORY NUMEXE
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
 
     local CMD="spark-submit --class org.bench.ml.$CLASS --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
     execute_withlog ${CMD}
 }
 
 sparksql() {
-    local CMD="echo exit | spark-sql --master yarn -i $@"
+    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar sparksql.executor.cores sparksql.driver.cores sparksql.driver.memory sparksql.num.executors`
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
+
+    local CMD="echo exit | spark-sql --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
     execute_withlog ${CMD}
+}
+
+sparksqlcommand() {
+    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar sparksql.executor.cores sparksql.driver.cores sparksql.driver.memory sparksql.num.executors`
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
+    
+    local CMD="spark-sql --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE --master yarn -e \"$@\""
+    execute_withlog ${CMD}
+}
+
+sqlremovetable() {
+    local -r COMMAND=$1
+    while true; do
+        shift
+        [ -z "$1" ] && break
+        $COMMAND "DROP TABLE IF EXISTS $1"
+    done
+}
+
+sparksqlremovetable() {
+    sqlremovetable sparksqlcommand $@
+}
+
+hivesqlremovetable() {
+    sqlremovetable hivesql $@
+}
+
+phoenixremovetable() {
+    sqlremovetable phoenix_command $@
 }
 
 hadoopbenchjar() {
     read -r NUM_MAPS NUM_REDS <<< `getconfvar map.parallelism shuffle.parallelism`
-    required_listofpars NUM_MAPS NUM_REDS
-    log_listofpars NUM_MAPS NUM_REDS
-    local -r ACTION=$1
+    verify_pars NUM_MAPS NUM_REDS
+    local -r ACTION=$1 
     shift
 
     local CMD="yarn jar $BENCHMARKJAR org.bench.mr.DataGen -t $ACTION -m ${NUM_MAPS} -r ${NUM_REDS} $@"
@@ -326,3 +456,37 @@ mapredtest() {
     local CMD="HADOOP_CLASSPATH=$JUNITJAR yarn jar $HADOOPMAPREDUCETEST $@"
     execute_withlog ${CMD}
 }
+
+# ==========================
+# verify sql results
+# ==========================
+
+sql_verifynonzero() {
+    local -r shellcommand=$1
+    local -r table=$2
+    local -r TMP=`crtemp`
+    local -r TMP1=`crtemp`
+
+    $shellcommand "SELECT 'NUMBEROFROWS:' || count(*) || ':EOF' from $table" >$TMP
+
+    cat $TMP | grep "NUMBEROFROWS" | tr -d "\| " | cut -d ":" -f2 >$TMP1
+    [ $? -eq 0 ] || logfail "Failed while extracting the result"
+
+    # second line contains number of rows
+    local -r NUMOFROWS=`cat $TMP1 | tail -n1 `
+
+    [ ${NUMOFROWS} -gt 0 ]  || logfail "Empty result"
+}
+
+hive_verifynonzero() {
+    sql_verifynonzero hivesql $1
+}
+
+spark_verifynonzero() {
+    sql_verifynonzero sparksqlcommand $1
+}
+
+phoenix_verifynonzero() {
+    sql_verifynonzero phoenix_command $1
+}
+

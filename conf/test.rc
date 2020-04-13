@@ -1,8 +1,8 @@
 # list of all tests
-TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr,pca,rf,svd,svm
+TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr,pca,rf,svd,svm,graph,sql,phoenix
 
 # DATA SIZE
-LISTSIZE=tiny
+LISTSIZE=tiny,small,large,huge,gigantic,bigdata
 BENCHSIZE=tiny
 
 
@@ -15,13 +15,33 @@ TMPOUTPUT1DIR=$TMPBASEDIR/output1dir
 JUNITJAR=/usr/hdp/current/hbase-client/lib/junit-4.12.jar
 HADOOPMAPREDUCETEST=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient-tests.jar
 HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
+PHOENIXDIR=/usr/hdp/current/phoenix-client
+PHOENIXLINE=$PHOENIXDIR/bin/sqlline.py
+TEMPDIR=/tmp
+NOTRANSACTIONAL="TBLPROPERTIES('transactional'='false')"
 
 BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchJar.jar
 
-spark_executor_cores=2
-spark_driver_cores=2
-spark_driver_memory=2g
-spark_num_executors=2
+tiny_spark_executor_cores=2
+tiny_spark_driver_cores=2
+tiny_spark_driver_memory=2g
+tiny_spark_num_executors=2
+
+spark_executor_cores=4
+spark_driver_cores=4
+spark_driver_memory=4g
+spark_num_executors=6
+
+sparksql_executor_cores=4
+sparksql_driver_cores=4
+sparksql_driver_memory=4g
+sparksql_num_executors=6
+
+tiny_sparksql_executor_cores=2
+tiny_sparksql_driver_cores=2
+tiny_sparksql_driver_memory=2g
+tiny_sparksql_num_executors=2
+
 
 map_parallelism=8
 shuffle_parallelism=8
