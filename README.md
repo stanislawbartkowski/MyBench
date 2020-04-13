@@ -32,6 +32,7 @@ The basic customization:<br>
 <br>
 > /usr/hdp/current/phoenix-client/bin//usr/hdp/current/phoenix-client $ZOOKEEPER /script file/<br>
 <br>
+
 * Increase "Phoenix Query Timeout" config parameters from default 1 minute. For instance: 5 minutes.
  
 ## Privileges
