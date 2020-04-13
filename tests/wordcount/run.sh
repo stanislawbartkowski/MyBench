@@ -52,7 +52,7 @@ EOF
 
 }
 
-sparkwordcount() {
+removeit_sparkwordcount() {
   local -r TMP=`crtemp`
   remove_tmpoutput
   local -r BEGTEST=`testbeg sparkwordcount`
@@ -73,6 +73,21 @@ EOF
   sparkshell $TMP
   testend $BEGTEST
 }
+
+sparkwordcount() {
+  local -r TMP=`crtemp`
+  remove_tmpoutput
+  local -r BEGTEST=`testbeg sparkwordcount`
+
+  OPTIONS="--outputPath $TMPOUTPUTDIR \
+             --dataPath $TMPINPUTDIR
+            "
+
+  sparkbenchjar HdfsWordCount  $OPTIONS
+
+  testend $BEGTEST
+}
+
 
 sparksqlwordcount() {
 
@@ -107,7 +122,8 @@ test() {
 #  randomtext
 #  wordcountmapreduce
 #  runhivewordcount
-  sparksqlwordcount
+#  sparksqlwordcount
+  sparkwordcount
 }
 
 cleanup() {
@@ -120,6 +136,7 @@ case $1 in
   cleanup) cleanup;; 
   *) 
     run;;
+#    test;;
 esac
 
 #test

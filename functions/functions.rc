@@ -387,11 +387,22 @@ pigscript() {
     execute_withlog ${CMD}
 }
 
-sparkshell() {
+# ==========================================================
+# !!! sparkshell does not work in the background &
+# Mystery
+# it hangs forever
+# =========================================================
+
+removeit_sparkshell() {
     read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
     verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
+    local -r TMP=`crtemp`
 
-    local CMD="echo :quit | spark-shell --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
+#    local CMD="echo :quit | spark-shell --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
+    echo ":quit" > $TMP
+    echo >$TMP
+    local CMD="cat $TMP | spark-shell --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
+
     execute_withlog ${CMD}
 }
 
