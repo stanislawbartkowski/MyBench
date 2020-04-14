@@ -83,8 +83,8 @@ test() {
 #    prepare_sql   
 #   prepare_data
    phoenix_scantest
-#   phoenix_aggregatetest
-#   phoenix_jointest
+   phoenix_aggregatetest
+   phoenix_jointest
 }
 
 cleanup() {

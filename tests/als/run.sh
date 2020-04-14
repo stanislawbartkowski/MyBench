@@ -22,7 +22,7 @@ prepare() {
 
 
 alsrun() {
-    local -r BEGTEST=`testbeg prepare`
+    local -r BEGTEST=`testbeg alsrun`
 
     read -r NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS <<< `getconfvar als.users als.products als.sparsity als.implicitprefs`
     required_listofpars NUM_USERS_ALS NUM_PRODUCTS_ALS SPARSITY_ALS IMPLICITPREFS_ALS
