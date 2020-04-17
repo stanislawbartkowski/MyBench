@@ -24,7 +24,7 @@ import org.apache.spark.HashPartitioner
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.graphx._
 import org.apache.spark.graphx.impl.GraphImpl
-import it.unimi.dsi.fastutil.longs.Long2DoubleOpenHashMap
+// import it.unimi.dsi.fastutil.longs.Long2DoubleOpenHashMap
 
 /**
  * Compute NWeight for Graph G(V, E) as defined below.
@@ -41,7 +41,7 @@ import it.unimi.dsi.fastutil.longs.Long2DoubleOpenHashMap
 object GraphPregelNWeight extends Serializable{
 
   def sendMsg(edge: EdgeTriplet[SizedPriorityQueue, Double]) = {
-    val m = new Long2DoubleOpenHashMap()
+    val m = new LongDoubleMap()
     val w1 = edge.attr
     val id = edge.srcId
     edge.dstAttr.foreach{ case (target, wn) =>
@@ -51,20 +51,23 @@ object GraphPregelNWeight extends Serializable{
     Iterator((id, m))
   }
 
-  def mergMsg(c1: Long2DoubleOpenHashMap, c2: Long2DoubleOpenHashMap) = {
-    c2.long2DoubleEntrySet()
-      .fastIterator()
-      .foreach(pair =>
-        c1.put(pair.getLongKey(), c1.get(pair.getLongKey()) + pair.getDoubleValue()))
+  def mergMsg(c1: LongDoubleMap, c2: LongDoubleMap) = {
+//    c2.long2DoubleEntrySet()
+//      .fastIterator()
+//      .foreach(pair =>
+//        c1.put(pair.getLongKey(), c1.get(pair.getLongKey()) + pair.getDoubleValue()))
+//    c1
+    c2.foreach(pair =>
+        c1.put(pair._1, c1.get(pair._1) + pair._2))
     c1
   }
 
-  def vProg(id: VertexId, vdata: SizedPriorityQueue, msg: Long2DoubleOpenHashMap) = {
+  def vProg(id: VertexId, vdata: SizedPriorityQueue, msg: LongDoubleMap) = {
     vdata.clear()
     if (msg.size > 0) {
-      msg.long2DoubleEntrySet().fastIterator().foreach { pair =>
-        val src = pair.getLongKey()
-        val wn = pair.getDoubleValue()
+      msg.foreach { pair =>
+        val src = pair._1
+        val wn = pair._2
         vdata.enqueue((src, wn))
       }
       vdata
@@ -92,7 +95,7 @@ object GraphPregelNWeight extends Serializable{
 
     var g = GraphImpl(edges, new SizedPriorityQueue(maxDegree), storageLevel, storageLevel).cache()
 
-    g = Pregel(g, new Long2DoubleOpenHashMap, step, EdgeDirection.In)(
+    g = Pregel(g, new LongDoubleMap, step, EdgeDirection.In)(
       vProg, sendMsg, mergMsg)
 
     g.vertices.map { case (vid, vdata) =>
