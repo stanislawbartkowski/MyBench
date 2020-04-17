@@ -52,11 +52,6 @@ object GraphPregelNWeight extends Serializable{
   }
 
   def mergMsg(c1: LongDoubleMap, c2: LongDoubleMap) = {
-//    c2.long2DoubleEntrySet()
-//      .fastIterator()
-//      .foreach(pair =>
-//        c1.put(pair.getLongKey(), c1.get(pair.getLongKey()) + pair.getDoubleValue()))
-//    c1
     c2.foreach(pair =>
         c1.put(pair._1, c1.get(pair._1) + pair._2))
     c1

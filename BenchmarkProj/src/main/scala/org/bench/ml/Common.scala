@@ -6,7 +6,8 @@ object Common {
 
   def getNumOfPartitons(sc : SparkContext): Int = {
     val parallel = sc.getConf.getInt("spark.default.parallelism", sc.defaultParallelism)
-    parallel / 2
+//    parallel / 2
+    parallel
   }
 
   def setMaster(conf : SparkConf) = {

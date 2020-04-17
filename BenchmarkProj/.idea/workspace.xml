@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0341c14c-9da4-4e60-af0f-102f245d9216" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BenchmarkProj.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphPregelNWeight.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphPregelNWeight.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphxNWeight.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/bench/ml/GraphxNWeight.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -461,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587155482613</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="get return 0 if key not found">
+      <created>1587158136660</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1587158136660</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -479,7 +487,8 @@
     <MESSAGE value="SparkGraph test" />
     <MESSAGE value="bug related to decimal point" />
     <MESSAGE value="remove Long2DoubleHashDependency, replace with regular map" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove Long2DoubleHashDependency, replace with regular map" />
+    <MESSAGE value="get return 0 if key not found" />
+    <option name="LAST_COMMIT_MESSAGE" value="get return 0 if key not found" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2478" y="180" width="653" height="710" key="#DataGen" timestamp="1586180262272">
@@ -518,26 +527,26 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2551" y="272" width="524" height="511" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1586179045666" />
-    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2" timestamp="1587155482253">
+    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2" timestamp="1587158136243">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587155482253" />
-    <state width="1669" height="330" key="GridCell.Tab.0.bottom" timestamp="1587157490962">
+    <state x="2347" y="73" width="875" height="899" key="CommitChangelistDialog2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587158136243" />
+    <state width="1669" height="249" key="GridCell.Tab.0.bottom" timestamp="1587158115616">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="330" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587157490962" />
-    <state width="1669" height="330" key="GridCell.Tab.0.center" timestamp="1587157490962">
+    <state width="1669" height="249" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587158115616" />
+    <state width="1669" height="249" key="GridCell.Tab.0.center" timestamp="1587158115616">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="330" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587157490962" />
-    <state width="1669" height="330" key="GridCell.Tab.0.left" timestamp="1587157490962">
+    <state width="1669" height="249" key="GridCell.Tab.0.center/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587158115616" />
+    <state width="1669" height="249" key="GridCell.Tab.0.left" timestamp="1587158115616">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="330" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587157490962" />
-    <state width="1669" height="330" key="GridCell.Tab.0.right" timestamp="1587157490962">
+    <state width="1669" height="249" key="GridCell.Tab.0.left/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587158115616" />
+    <state width="1669" height="249" key="GridCell.Tab.0.right" timestamp="1587158115616">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1669" height="330" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587157490962" />
+    <state width="1669" height="249" key="GridCell.Tab.0.right/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587158115616" />
     <state width="1669" height="330" key="GridCell.Tab.1.bottom" timestamp="1587157490962">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -558,10 +567,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2337" y="175" width="1007" height="737" key="SettingsEditor/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1585858394401" />
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1587155484024">
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1587158138801">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587155484024" />
+    <state x="2413" y="260" width="800" height="535" key="Vcs.Push.Dialog.v2/1920.0.1920.1080/0.27.1920.1020@1920.0.1920.1080" timestamp="1587158138801" />
     <state x="2574" y="315" width="449" height="449" key="chooseDestDirectoryDialog" timestamp="1586646128661">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
