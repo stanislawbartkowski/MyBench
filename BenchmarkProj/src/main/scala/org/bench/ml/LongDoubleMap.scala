@@ -11,7 +11,14 @@ class LongDoubleMap {
 
   def foreach[U](f: ((Long, Double)) => U): Unit = m.foreach(f)
 
-  def get(key : Long) : Double = m(key)
+  def get(key : Long) : Double = {
+    try {
+      m(key)
+    }
+    catch {
+      case e : java.util.NoSuchElementException => 0.0
+    }
+  }
 
   def size = m.size
 
