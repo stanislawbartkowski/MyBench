@@ -36,6 +36,13 @@ spark_driver_memory=4g
 spark_executor_memory=4g
 spark_num_executors=6
 
+huge_spark_executor_cores=6
+huge_spark_driver_cores=6
+huge_spark_driver_memory=6g
+huge_spark_executor_memory=16g
+huge_spark_num_executors=8
+
+
 sparksql_executor_cores=4
 sparksql_driver_cores=4
 sparksql_driver_memory=4g
