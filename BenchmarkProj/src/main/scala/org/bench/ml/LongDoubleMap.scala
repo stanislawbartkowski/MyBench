@@ -7,7 +7,8 @@ class LongDoubleMap {
 
   private val m: mutable.Map[Long, Double] =new mutable.HashMap[Long,Double]();
 
-  def put(key : Long, value : Double) = m(key) = value
+//  def put(key : Long, value : Double) = m(key) = value
+  def put(key : Long, value : Double) = null
 
   def foreach[U](f: ((Long, Double)) => U): Unit = m.foreach(f)
 
