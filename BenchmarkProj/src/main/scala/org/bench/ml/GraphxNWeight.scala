@@ -103,6 +103,7 @@ object GraphxNWeight extends Serializable{
     var msg: RDD[(VertexId, LongDoubleMap)] = null
     for (i <- 2 to step) {
       msg = g.aggregateMessages(mapF,reduceF)
+      println("msg =================" + msg.count())
       g = g.outerJoinVertices(msg)(updateF).persist(storageLevel)
     }
     println("11) ========================================================")
