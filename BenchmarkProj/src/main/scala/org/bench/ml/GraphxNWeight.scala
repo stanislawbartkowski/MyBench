@@ -105,6 +105,7 @@ object GraphxNWeight extends Serializable{
       )
       g = g.outerJoinVertices(msg)(updateF).persist(storageLevel)
     }
+    println("11) ========================================================")
     println("edges"+ g.edges.count());
     println("vertices"+ g.vertices.count());
     println("2) ========================================================")
