@@ -35,24 +35,21 @@ import org.apache.spark.graphx.impl.GraphImpl
 
 object GraphxNWeight extends Serializable{
 
+  def P(s :String) = println(s + " ======================")
+
   def mapF(edge: EdgeContext[SizedPriorityQueue, Double, LongDoubleMap]) = {
     val theMap = new LongDoubleMap()
     val edgeAttribute = edge.attr
     val id = edge.srcId
-    println("before mapF")
     edge.dstAttr.foreach{ case (target, wn) =>
       if (target != id)
         theMap.put(target, wn * edgeAttribute)
     }
-    println("after mapF = " + theMap.size)
     edge.sendToSrc(theMap)
-    println("after send = " + theMap.size)
   }
 
   def reduceF(c1: LongDoubleMap, c2: LongDoubleMap) = {
-    println("before reduceF c2=" + c2.size)
     c2.foreach(pair => c1.put(pair._1, c1.get(pair._1) + pair._2))
-    println("after foreach c1=" + c1.size)
     c1
   }
 
@@ -89,9 +86,9 @@ object GraphxNWeight extends Serializable{
     }.partitionBy(part).map(_._2)
 
 
-    println("0) ========================================================")
+    P("Number of edges")
     println("edges:" + edges.count())
-    println("0) ========================================================")
+    println("After culculating number of edged")
     val vertices = edges.map { e =>
       (e.srcId, (e.dstId, e.attr))
     }.groupByKey(part).map { case (id, seq) =>
@@ -100,20 +97,20 @@ object GraphxNWeight extends Serializable{
       (id, vdata)
     }
 
-    println("00) ========================================================")
+    println("Before GraphImpl")
     var g = GraphImpl(vertices, edges, new SizedPriorityQueue(maxDegree), storageLevel, storageLevel).cache()
 
     var msg: RDD[(VertexId, LongDoubleMap)] = null
     for (i <- 2 to step) {
       msg = g.aggregateMessages(mapF,reduceF)
-      println("msg =================" + msg.count())
+      println("Number of messages" + msg.count())
       g = g.outerJoinVertices(msg)(updateF).persist(storageLevel)
     }
-    println("11) ========================================================")
+    println("Before calculatin number of edges")
     println("edges"+ g.edges.count());
-    println("111) ========================================================")
+    println("Before calculating number of vertices")
     println("vertices"+ g.vertices.count());
-    println("2) ========================================================")
+    println("After calculating, now saving the result")
 
     g.vertices.map { case (vid, vdata) =>
       var s = new StringBuilder
