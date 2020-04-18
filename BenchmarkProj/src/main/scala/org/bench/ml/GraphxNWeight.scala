@@ -39,11 +39,14 @@ object GraphxNWeight extends Serializable{
     val theMap = new LongDoubleMap()
     val edgeAttribute = edge.attr
     val id = edge.srcId
+    println("before mapF")
     edge.dstAttr.foreach{ case (target, wn) =>
       if (target != id)
         theMap.put(target, wn * edgeAttribute)
     }
+    println("after mapF = " + theMap.size)
     edge.sendToSrc(theMap)
+    println("after send = " + theMap.size)
   }
 
   def reduceF(c1: LongDoubleMap, c2: LongDoubleMap) = {
