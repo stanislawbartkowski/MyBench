@@ -83,6 +83,9 @@ object GraphxNWeight extends Serializable{
       }
     }.partitionBy(part).map(_._2)
 
+
+    println("0) ========================================================")
+    println("edges:" + edges.count())
     println("0) ========================================================")
     val vertices = edges.map { e =>
       (e.srcId, (e.dstId, e.attr))
@@ -96,13 +99,14 @@ object GraphxNWeight extends Serializable{
     var g = GraphImpl(vertices, edges, new SizedPriorityQueue(maxDegree), storageLevel, storageLevel).cache()
 
     var msg: RDD[(VertexId, LongDoubleMap)] = null
-    println("1) ========================================================")
     for (i <- 2 to step) {
       msg = g.aggregateMessages(mapF,
         reduceF
       )
       g = g.outerJoinVertices(msg)(updateF).persist(storageLevel)
     }
+    println("edges"+ g.edges.count());
+    println("vertices"+ g.vertices.count());
     println("2) ========================================================")
 
     g.vertices.map { case (vid, vdata) =>
