@@ -47,7 +47,9 @@ object GraphxNWeight extends Serializable{
   }
 
   def reduceF(c1: LongDoubleMap, c2: LongDoubleMap) = {
+    println("before reduceF c2=" + c2.size)
     c2.foreach(pair => c1.put(pair._1, c1.get(pair._1) + pair._2))
+    println("after foreach c1=" + c1.size)
     c1
   }
 
@@ -100,13 +102,12 @@ object GraphxNWeight extends Serializable{
 
     var msg: RDD[(VertexId, LongDoubleMap)] = null
     for (i <- 2 to step) {
-      msg = g.aggregateMessages(mapF,
-        reduceF
-      )
+      msg = g.aggregateMessages(mapF,reduceF)
       g = g.outerJoinVertices(msg)(updateF).persist(storageLevel)
     }
     println("11) ========================================================")
     println("edges"+ g.edges.count());
+    println("111) ========================================================")
     println("vertices"+ g.vertices.count());
     println("2) ========================================================")
 
