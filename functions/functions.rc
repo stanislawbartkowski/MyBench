@@ -408,35 +408,21 @@ pigscript() {
 # it hangs forever
 # =========================================================
 
-removeit_sparkshell() {
-    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.driver.cores spark.driver.memory spark.num.executors`
-    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
-    local -r TMP=`crtemp`
-
-#    local CMD="echo :quit | spark-shell --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
-    echo ":quit" > $TMP
-    echo >$TMP
-    local CMD="cat $TMP | spark-shell --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
-
-    execute_withlog ${CMD}
-}
-
 sparkbenchjar() {
     local -r CLASS=$1
     shift
     read -r EXECORES EXEMEMORY DRVCORES DRVMEMORY NUMEXE <<< `getconfvar spark.executor.cores spark.executor.memory spark.driver.cores spark.driver.memory spark.num.executors`
     verify_pars EXECORES EXEMEMORY DRVCORES DRVMEMORY NUMEXE
 
-    local CMD="spark-submit --conf spark.network.timeout=800s --class org.bench.ml.$CLASS --master yarn --executor-cores $EXECORES --executor-memory $EXEMEMORY --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
+    local CMD="spark-submit --class org.bench.ml.$CLASS --master yarn --executor-cores $EXECORES --executor-memory $EXEMEMORY --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE $BENCHMARKJAR $@"
     execute_withlog ${CMD}
 }
 
 sparksql() {
-    read -r EXECORES DRVCORES DRVMEMORY NUMEXE <<< `getconfvar sparksql.executor.cores sparksql.driver.cores sparksql.driver.memory sparksql.num.executors`
-    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE
+    read -r EXECORES DRVCORES DRVMEMORY NUMEXE EXEMEMORY <<< `getconfvar sparksql.executor.cores sparksql.driver.cores sparksql.driver.memory sparksql.num.executors sparksql_executor_memory`
+    verify_pars EXECORES DRVCORES DRVMEMORY NUMEXE EXEMEMORY
 
-#    local CMD="echo exit | spark-sql --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -i $@"
-    local CMD="spark-sql --master yarn --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -f $@"
+    local CMD="spark-sql --master yarn --executor-memory $EXEMEMORY --executor-cores $EXECORES --driver-cores $DRVCORES --driver-memory $DRVMEMORY --num-executors $NUMEXE -f $@"
     execute_withlog ${CMD}
 }
 

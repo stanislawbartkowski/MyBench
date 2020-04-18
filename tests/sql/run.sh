@@ -132,7 +132,8 @@ cleanup() {
 case $1 in 
   cleanup) cleanup;; 
   *) 
-    run;;
+#    run;;
+     test;;
 esac
 
 #test
