@@ -1,4 +1,3 @@
-
 BASEDIR=`dirname $0`
 BASEDIR=`realpath $BASEDIR`
 export FUNCTIONSRC=$BASEDIR/functions/functions.rc
@@ -9,7 +8,8 @@ source $FUNCTIONSRC
 setenv
 
 DIRTEST=tests
-DISABLE=disable
+IGNORE=ignore
+DISABLED=disabled
 CLEAN=clean
 SANDBOX=sandbox
 
@@ -34,6 +34,22 @@ removetemp() {
 # verify environment
 # ====================
 
+ignoretest() {
+    local -r DIRT=$DIRTEST/$1
+    [ -f $DIRT/$IGNORE ] && return 0
+    return 1
+}
+
+disabledtest() {
+    local -r DIRT=$DIRTEST/$1
+    for w in ${LISTSIZE//,/ }; do
+        [ -f  $DIRT/${DISABLED}_$w ] && return 0
+        [ $w == $BENCHSIZE ] &&  return 1
+    done
+    return 1
+}
+
+
 verifyenv() {
     log "Check environment"
     required_listofvars TESTLIST SANDBOX DIRTEST TMPOUTPUTDIR LISTSIZE BENCHSIZE TMPINPUTDIR
@@ -50,7 +66,8 @@ verifyenv() {
         existfile $DIRT/run.sh
         existfile $DIRT/$ENVCONF
         existexefile $DIRT/run.sh
-        [ -f $DIRT/$DISABLE ] && log "$DIRT/$DISABLE exist, $dir test not executed"
+        if ignoretest $dir ; then log "$DIRT/$IGNORE exist, $dir test not executed"; fi
+        if disabledtest $dir; then log "$DIRT/${DISABLED}_size exist, $dir test not executed for $BENCHSIZE"; fi
     done
     log "Environment ok"
 }
@@ -69,21 +86,32 @@ preparesandbox() {
 
 runsingletest() {
     export TESTNAME=$1
-    export PAR=$2
+    export PAR=$2    
     log "Execute $TESTNAME $PAR"
     cd $SANDBOX
     if ./run.sh $PAR; then 
         log "$TESTNAME $PAR passed"
     else     
         logfail "$TESTNAME $PAR failed"
+        markfailedtest FAILED
     fi
     cd $BASEDIR
 }
 
+rundisabledtest() {
+    export TESTNAME=$1
+    log "Disabled $TESTNAME"
+    markfailedtest FAILED
+}
+
 runtests() {
-    log "Run tests, size $SIZE"
+    log "Run tests, size $BENCHSIZE"
     for test in ${TESTLIST//,/ }; do
-        [ -f $DIRTEST/$test/$DISABLE ] && continue
+        if ignoretest $test; then continue; fi
+        if disabledtest $test; then 
+           rundisabledtest $test
+           continue
+        fi
         preparesandbox $test
         runsingletest $test
     done
@@ -110,7 +138,8 @@ cleanproc() {
 
     log "Run cleanup procedure across tests"
     for test in ${TESTLIST//,/ }; do
-        [ -f $DIRTEST/$test/$DISABLE ] && continue
+        if  ignoretest $test; then contine; fi
+        if  disabled $test; then continue; fi
         if [ -f $DIRTEST/$test/$CLEAN ]; then
             preparesandbox $test
             runsingletest $test cleanup

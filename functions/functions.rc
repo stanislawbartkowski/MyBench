@@ -110,6 +110,13 @@ testend() {
     printline $TESTNAME $NAMELEN $subtest $NAMELEN "`dir_isize`" $SIZELEN "$begdate" $DATELEN "`getdate`" $DATELEN "`calculatesec $begsec`" $SECLEN
 }
 
+markfailedtest() {
+    local -r STATE=$1
+    local -r BEGTEST=`testbeg $STATE`
+    testend $BEGTEST
+}
+
+
 # ========================
 # misc script utilties
 # ========================
