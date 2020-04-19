@@ -30,18 +30,23 @@ tiny_spark_driver_memory=2g
 tiny_spark_executor_memory=2g
 tiny_spark_num_executors=2
 
-spark_executor_cores=4
-spark_driver_cores=4
-spark_driver_memory=4g
-spark_executor_memory=4g
-spark_num_executors=6
+small_spark_executor_cores=4
+small_spark_driver_cores=4
+small_spark_driver_memory=4g
+small_spark_executor_memory=4g
+small_spark_num_executors=6
 
-huge_spark_executor_cores=6
-huge_spark_driver_cores=6
-huge_spark_driver_memory=6g
-huge_spark_executor_memory=8g
-huge_spark_num_executors=8
+large_spark_executor_cores=4
+large_spark_driver_cores=4
+large_spark_driver_memory=4g
+large_spark_executor_memory=4g
+large_spark_num_executors=6
 
+spark_executor_cores=6
+spark_driver_cores=6
+spark_driver_memory=6g
+spark_executor_memory=8g
+spark_num_executors=8
 
 sparksql_executor_cores=4
 sparksql_driver_cores=4
