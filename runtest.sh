@@ -101,7 +101,7 @@ runsingletest() {
 rundisabledtest() {
     export TESTNAME=$1
     log "Disabled $TESTNAME"
-    markfailedtest FAILED
+    markfailedtest DISABLED
 }
 
 runtests() {
