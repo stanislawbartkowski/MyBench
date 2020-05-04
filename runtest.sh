@@ -139,7 +139,6 @@ cleanproc() {
     log "Run cleanup procedure across tests"
     for test in ${TESTLIST//,/ }; do
         if  ignoretest $test; then contine; fi
-        if  disabled $test; then continue; fi
         if [ -f $DIRTEST/$test/$CLEAN ]; then
             preparesandbox $test
             runsingletest $test cleanup
