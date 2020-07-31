@@ -30,7 +30,7 @@ The basic customization:<br>
  * *BENCHSIZE* Size of the test. Possible values: *tiny,small,large,huge,gigantic,bigdata*. Start with *tiny* and being sure that *MyBench* is running climb up the ladder.
  
 **HBase Phoenix**<br>
-* ZOOKEEPER variable: set ZOOKEEPER variable having the hostname of Zookeeper cluster. It is necessary to run Phoenix command line tool
+* ZOOKEEPER variable: set ZOOKEEPER variable having the hostname of Zookeeper cluster. It is necessary to run HBase Phoenix command line tool.
 <br>
 > /usr/hdp/current/phoenix-client/bin//usr/hdp/current/phoenix-client $ZOOKEEPER /script file/<br>
 <br>
