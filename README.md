@@ -44,7 +44,8 @@ The MyBench temporary HDFS space is determined by *TMPBASEDIR* variable, default
 ### Hive
 If Hive *hive.server2.enable.doAs* impersonation is not set:
  *  Give *hive* user *read/write/execute* permissions to *TMPBASEDIR* HDFS directory.<br>
-if impersonation is enabled:
+ 
+If impersonation is enabled:
  * User running MyBench test should have permissions to */warehouse/tablespace* directory.<br>
 
 Also, set *hive.strict.managed.tables* to false to allow creation non-transactional tables managed by Hive.
