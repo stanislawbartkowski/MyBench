@@ -40,7 +40,7 @@ The basic customization:<br>
 ## Privileges
 
 ### HDFS
-The MyBench temporary HDFS space is determined by *TMPBASEIDIR* variable, default is */tmp/bench*
+The MyBench temporary HDFS space is determined by *TMPBASEDIR* variable, default is */tmp/bench*
 ### Hive
 If Hive *hive.server2.enable.doAs* impersonation is not set, give *hive* user *read/write/execute* permissions to *TMPBASEDIR* HDFS directory.<br>
 If impersonation is enabled, user running MyBench test should have permissions to */warehouse/tablespace* directory.<br>
@@ -58,7 +58,7 @@ If the cluster is Kerberized, obtain valid Kerberos ticket before running the te
 # Run test suite
 > ./runtest.sh<br>
 
-Executes all tests specified in the *TESTLIST* variable in *conf/custom.rc* source file.
+Executes all tests specified in the *TESTLIST* variable in *conf/custom.rc* source file. If the *TESTLIST* variable is commented out, all tests are executed.
 
 
 
