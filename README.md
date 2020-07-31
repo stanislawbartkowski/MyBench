@@ -17,6 +17,8 @@ Test<br>
 ```
 -rw-r--r--. 1 ambari-qa hadoop 1379091 Apr 10 23:53 target/scala-2.11/BenchJar.jar
 ```
+It running *sbt* on the target machine is not possible, run *sbt* on other Linux machine and copy target/scala-2.11/BenchJar.jar to the target host.
+
 ## Customization
 >cd conf<br>
 > cp custom.rc.template custom.rc<br>
