@@ -25,7 +25,7 @@ The MyBench test is controlled by *test.rc* environment settings. Any variable i
 <br>
 The basic customization:<br>
  * *TESTLIST* List of tests to be executed. *TESTLIST* variable in *test.rc* can be used as a reference, it contains a list of all tests implemented so far. *TESTLIST* in *custom.rc* is the list of tests to be executed.
- * *BENCHSIZE* Size of the test. Currently only *tiny* is supported
+ * *BENCHSIZE* Size of the test. 
  
 **HBase Phoenix**<br>
 * ZOOKEEPER variable: set ZOOKEEPER variable having the hostname of Zookeeper cluster. It is necessary to run Phoenix command line tool
