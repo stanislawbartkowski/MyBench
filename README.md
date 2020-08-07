@@ -56,6 +56,37 @@ As *hbase* user, create additional *bench* namespace<br>
 > create_namespace 'bench'
 
 Give the user running MyBench test, the full authority in *SYSTEM.\** and *BENCH.\** namespace.
+### HBase, Phoenix client
+Make sure that client can connect to Hbase Phoenix using Zookeeper servers provided.<br>
+ > /usr/hdp/current/phoenix-client/bin/sqlline.py  data3-worker.cloudga.com,data1-worker.cloudga.com,data2-worker.cloudga.com:2181/hbase-secure <br>
+ ```
+ Setting property: [incremental, false]
+Setting property: [isolation, TRANSACTION_READ_COMMITTED]
+issuing: !connect jdbc:phoenix:data3-dev.cloudga.com,mgmt1-dev.cloudga.com,mgmt2-dev.cloudga.com:2181/hbase-secure none none org.apache.phoenix.jdbc.PhoenixDriver
+Connecting to jdbc:phoenix:data3-dev.cloudga.com,mgmt1-dev.cloudga.com,mgmt2-dev.cloudga.com:2181/hbase-secure
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/usr/hdp/3.1.0.0-78/phoenix/phoenix-5.0.0.3.1.0.0-78-client.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/usr/hdp/3.1.0.0-78/hadoop/lib/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+20/08/07 12:09:04 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Connected to: Phoenix (version 5.0)
+Driver: PhoenixEmbeddedDriver (version 5.0)
+Autocommit status: true
+Transaction isolation: TRANSACTION_READ_COMMITTED
+Building list of tables and columns for tab-completion (set fastconnect to true to skip)...
+133/133 (100%) Done
+Done
+sqlline version 1.2.0
+0: jdbc:phoenix:data3-worker.cloudga.com,data1-w> 
+ ```
+ Troubleshooting<br>
+ In order to make *sqlline.py* client software more verbose, enable TRACING. This setting is not managed by Ambari and needs to be done manually.
+>vi /usr/hdp/3.1.0.0-78/phoenix/bin/log4j.properties
+```
+....
+#psql.root.logger=WARN,console
+psql.root.logger=TRACE,console
+ ```
 ### Kerberos
 If the cluster is Kerberized, obtain valid Kerberos ticket before running the test.
 
