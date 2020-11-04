@@ -17,7 +17,8 @@ Test<br>
 ```
 -rw-r--r--. 1 ambari-qa hadoop 1379091 Apr 10 23:53 target/scala-2.11/BenchJar.jar
 ```
-It running *sbt* on the target machine is not possible, run *sbt* on other Linux machine and copy target/scala-2.11/BenchJar.jar to the target host.
+
+If *sbt* or Java development are not an option, run *sbt* on any other machine and copy *BenchJar.jar* to the target node.
 
 ## Customization
 >cd conf<br>
