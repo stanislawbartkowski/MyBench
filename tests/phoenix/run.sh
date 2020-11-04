@@ -81,7 +81,7 @@ run() {
 test() {
 #    remove_tmp
 #    prepare_sql   
-#   prepare_data
+   prepare_data
    phoenix_scantest
    phoenix_aggregatetest
    phoenix_jointest

@@ -122,9 +122,9 @@ test() {
 #  randomtext
 #  wordcountmapreduce
 #  runhivewordcount
-#  sparksqlwordcount
-#  sparkwordcount
   sparksqlwordcount
+#  sparkwordcount
+#  sparksqlwordcount
 }
 
 cleanup() {

@@ -331,7 +331,7 @@ yarn_job_examples() {
 }
 
 hivesql() {
-    local CMD="beeline -e \"$@\""
+    local CMD="beeline -e \"$@\" $HIVEAUTH"
     execute_withlog ${CMD}
 }
 
@@ -342,7 +342,7 @@ hiveexporttable() {
     # block wildcard expansion
     set -f
     local -r SQL='select * from $TABLE'
-    local CMD="beeline --outputformat=csv2 -e \" $SQL \" "
+    local CMD="beeline --outputformat=csv2 -e \" $SQL \" $HIVEAUTH "
     # remove first 2 lines
     if [ $WHAT = "dir" ]; then
         local -r P=$PWD
@@ -400,7 +400,7 @@ hive_phoeniximport() {
 }
 
 hivesqlscript() {
-    local CMD="beeline -f $1"
+    local CMD="beeline -f $1 $HIVEAUTH"
     execute_withlog ${CMD}
 }
 

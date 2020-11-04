@@ -14,3 +14,4 @@ BENCHSIZE=tiny
 #TESTLIST=svd
 #TESTLIST=svm
 
+#HIVEAUTH="-n ambari-qa -p secret"

@@ -20,7 +20,7 @@ USE DEFAULT;
 DROP TABLE IF EXISTS uservisits;
 CREATE EXTERNAL TABLE uservisits (sourceIP STRING,destURL STRING,visitDate STRING,adRevenue DOUBLE,userAgent STRING,countryCode STRING,languageCode STRING,searchWord STRING,duration INT ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' STORED AS  SEQUENCEFILE LOCATION '$INPUT_HDFS/uservisits';
 DROP TABLE IF EXISTS uservisits_copy;
-CREATE TABLE uservisits_copy (sourceIP STRING,destURL STRING,visitDate STRING,adRevenue DOUBLE,userAgent STRING,countryCode STRING,languageCode STRING,searchWord STRING,duration INT ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' STORED AS  SEQUENCEFILE LOCATION '$OUTPUT_HDFS/uservisits_copy' $NOTRANSACTIONAL;
+CREATE TABLE uservisits_copy (sourceIP STRING,destURL STRING,visitDate STRING,adRevenue DOUBLE,userAgent STRING,countryCode STRING,languageCode STRING,searchWord STRING,duration INT ) STORED AS $HIVEFORMAT $NOTRANSACTIONAL;
 INSERT OVERWRITE TABLE uservisits_copy SELECT * FROM uservisits;
 EOF
     $command $TMP
@@ -52,7 +52,7 @@ CREATE EXTERNAL TABLE rankings (pageURL STRING, pageRank INT, avgDuration INT) R
 DROP TABLE IF EXISTS uservisits_copy;
 CREATE EXTERNAL TABLE uservisits_copy (sourceIP STRING,destURL STRING,visitDate STRING,adRevenue DOUBLE,userAgent STRING,countryCode STRING,languageCode STRING,searchWord STRING,duration INT ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' STORED AS  SEQUENCEFILE LOCATION '$INPUT_HDFS/uservisits';
 DROP TABLE IF EXISTS rankings_uservisits_join;
-CREATE TABLE rankings_uservisits_join ( sourceIP STRING, avgPageRank DOUBLE, totalRevenue DOUBLE) STORED AS  SEQUENCEFILE LOCATION '$OUTPUT_HDFS/rankings_uservisits_join' $NOTRANSACTIONAL;
+CREATE TABLE rankings_uservisits_join ( sourceIP STRING, avgPageRank DOUBLE, totalRevenue DOUBLE) STORED AS $HIVEFORMAT $NOTRANSACTIONAL;
 INSERT OVERWRITE TABLE rankings_uservisits_join SELECT sourceIP, avg(pageRank), sum(adRevenue) as totalRevenue FROM rankings R JOIN (SELECT sourceIP, destURL, adRevenue FROM uservisits_copy UV WHERE (datediff(UV.visitDate, '1999-01-01')>=0 AND datediff(UV.visitDate, '2000-01-01')<=0)) NUV ON (R.pageURL = NUV.destURL) group by sourceIP order by totalRevenue DESC;
 EOF
 
@@ -80,7 +80,7 @@ cat << EOF | cat >$TMP
 DROP TABLE IF EXISTS uservisits;
 CREATE EXTERNAL TABLE uservisits (sourceIP STRING,destURL STRING,visitDate STRING,adRevenue DOUBLE,userAgent STRING,countryCode STRING,languageCode STRING,searchWord STRING,duration INT ) ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' STORED AS  SEQUENCEFILE LOCATION '$INPUT_HDFS/uservisits';
 DROP TABLE IF EXISTS uservisits_aggre;
-CREATE TABLE uservisits_aggre ( sourceIP STRING, sumAdRevenue DOUBLE) STORED AS  SEQUENCEFILE LOCATION '$OUTPUT_HDFS/uservisits_aggre' $NOTRANSACTIONAL ;
+CREATE TABLE uservisits_aggre ( sourceIP STRING, sumAdRevenue DOUBLE) STORED AS $HIVEFORMAT $NOTRANSACTIONAL ;
 INSERT OVERWRITE TABLE uservisits_aggre SELECT sourceIP, SUM(adRevenue) FROM uservisits GROUP BY sourceIP;
 
 EOF
@@ -119,9 +119,8 @@ test() {
 #    prepare_sql
 #    runscan
 #    runaggregation
-    runjoin
-#    runscan
-  
+#    runjoin
+  runscan
 }
 
 cleanup() {
@@ -133,7 +132,7 @@ case $1 in
   cleanup) cleanup;; 
   *) 
     run;;
-#     test;;
+#    test;;
 esac
 
 #test
