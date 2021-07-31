@@ -92,6 +92,8 @@ cleanup() {
     phoenixremovetable bench.uservisits_join bench.uservisits_aggre bench.rankings bench.uservisits bench.uservisits_copy
 }
 
+required_listofvars PHOENIXDIR ZOOKEEPER PHOENIXLINE
+
 case $1 in 
   cleanup) cleanup;; 
   *) 

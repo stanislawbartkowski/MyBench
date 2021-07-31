@@ -93,16 +93,19 @@ EOF
 
 runaggregation() {
     runsqlaggregation hiveaggregate hivesqlscript "hive_verifynonzero uservisits_aggre"
+    if nosparksql; then return; fi
     runsqlaggregation sparkaggregate sparksql "spark_verifynonzero uservisits_aggre"
 }
 
 runjoin() {
     runsqljoin hivejoin hivesqlscript "hive_verifynonzero rankings_uservisits_join"
+    if nosparksql; then return; fi
     runsqljoin sparkjoin sparksql "spark_verifynonzero rankings_uservisits_join"
 }
 
 runscan() {
     runsqlscan hivescan hivesqlscript "hive_verifynonzero uservisits_copy"
+    if nosparksql; then return; fi
     runsqlscan sparksan sparksql "spark_verifynonzero uservisits_copy"
 }
 

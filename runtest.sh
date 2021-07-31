@@ -1,5 +1,6 @@
 BASEDIR=`dirname $0`
 BASEDIR=`realpath $BASEDIR`
+export COMMONPROC=$BASEDIR/functions/commonproc.sh
 export FUNCTIONSRC=$BASEDIR/functions/functions.rc
 export ENVRC=$BASEDIR/conf/test.rc
 export CUSTOMRC=$BASEDIR/conf/custom.rc
@@ -55,7 +56,6 @@ verifyenv() {
     required_listofvars TESTLIST SANDBOX DIRTEST TMPOUTPUTDIR LISTSIZE BENCHSIZE TMPINPUTDIR
 
     required_listofvars HADOOPEXAMPLES JUNITJAR HADOOPMAPREDUCETEST BENCHMARKJAR TMPBASEDIR
-    required_listofvars PHOENIXDIR ZOOKEEPER
     # check if SIZE on the list
     onthelist $BENCHSIZE $LISTSIZE 
 
@@ -156,6 +156,8 @@ cleandata() {
 
     removetemp
 }
+
+touchlogfile
 
 case $1 in
   cleanup) cleandata;;

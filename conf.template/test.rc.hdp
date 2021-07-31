@@ -1,8 +1,6 @@
 # list of all tests
 TESTLIST=wordcount,terasort,dsfio,als,bayes,gbt,lda,linear,lr,pca,rf,svd,svm,graph,sql,phoenix
 
-LOGFILE=/tmp/mybench.log
-
 # DATA SIZE
 LISTSIZE=tiny,small,large,huge,gigantic,bigdata
 BENCHSIZE=tiny
@@ -14,27 +12,16 @@ TMPINPUTDIR=$TMPBASEDIR/$INPUTDIR
 TMPOUTPUTDIR=$TMPBASEDIR/outputdir
 TMPOUTPUT1DIR=$TMPBASEDIR/output1dir
 
-
-# HDP
-#JUNITJAR=/usr/hdp/current/hbase-client/lib/junit-4.12.jar
-#HADOOPMAPREDUCETEST=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient-tests.jar
-#HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
-#PHOENIXDIR=/usr/hdp/current/phoenix-client
-#ISPIG=X
-#ISSPARKSQL=X
-
-# CLOUDERA
-JUNITJAR=/opt/cloudera/parcels/CDH-7.1.5-1.cdh7.1.5.p0.7431829/jars/junit-4.12.jar
-HADOOPMAPREDUCETEST=/opt/cloudera/parcels/CDH-7.1.5-1.cdh7.1.5.p0.7431829/lib/hadoop-mapreduce/hadoop-mapreduce-client-jobclient-tests.jar
-HADOOPEXAMPLES=/opt/cloudera/parcels/CDH-7.1.5-1.cdh7.1.5.p0.7431829/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar
-PHOENIXDIR=/opt/cloudera/parcels/CDH-7.1.5-1.cdh7.1.5.p0.7431829/lib/phoenix/
-
-
+JUNITJAR=/usr/hdp/current/hbase-client/lib/junit-4.12.jar
+HADOOPMAPREDUCETEST=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient-tests.jar
+HADOOPEXAMPLES=/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
+PHOENIXDIR=/usr/hdp/current/phoenix-client
 PHOENIXLINE=$PHOENIXDIR/bin/sqlline.py
 TEMPDIR=/tmp
 NOTRANSACTIONAL="TBLPROPERTIES('transactional'='true')"
 HIVEFORMAT=ORC
-ZOOKEEPER=aliquant1.fyre.ibm.com,aliquant2.fyre.ibm.com,aliquant3.fyre.ibm.com:2181/hbase
+ZOOKEEPER=
+# ZOOKEEPER=mdp1.sb.com,mdp2.sb.com,mdp3.sb.com
 
 BENCHMARKJAR=../BenchmarkProj/target/scala-2.11/BenchJar.jar
 

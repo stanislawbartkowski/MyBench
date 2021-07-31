@@ -1,47 +1,7 @@
+source $COMMONPROC
+
 ENVCONF=env.conf
-REPDEL='|'
 
-# =========================
-# logging
-# =========================
-
-logfile() {
-    local -r MESS="$1"
-}
-
-log() {
-    local -r MESS="$1"
-    logfile "$MESS"
-    echo $MESS
-}
-
-logfail() {
-    log "$1"
-    exit 4
-}
-
-execute_withlog() {
-    local -r CMD="$@"
-    # important: some command are assuming the first line in the output is not relevant and remove it
-    # do not remove this log $CMD below
-    log "$CMD"
-    eval $CMD
-    if [ $? -ne 0 ]; then
-        # log CMD again, it can preceded by bunch of logs
-        log "$CMD"
-        logfail "Job failed"
-    fi
-}
-
-# =============================
-# temporary files
-# =============================
-
-crtemp() {
-  local -r TMP=`mktemp`
-  echo $TMP >>$TMPSTORE
-  echo $TMP
-}
 
 # =============================
 # different report functions
@@ -57,49 +17,15 @@ dir_isize() {
     echo `dir_size $TMPINPUTDIR`
 }
 
-getsec() {
-  echo `date  +"%s"`
-}
-
-
-calculatesec() {
-  local -r before=$1
-  local -r after=`getsec`
-  echo $(expr $after - $before)
-}
-
-getdate() {
-    echo `date +"%Y-%m-%d %H-%M-%S"`
-}
-
-tsp() {
-    local -r MESS="$1"
-    local -r LEN=$2
-    local -r OUT=`printf "%-${LEN}s $REPDEL" "$MESS"`
-    echo "$OUT"
-}
-
 NAMELEN=20
 DATELEN=20
 SECLEN=10
 SIZELEN=10
 
-
-printline() {
-    echo -n $REPDEL >>$REPORTFILE
-    while true; do
-        [ -z "$1" ] && break
-        O=`tsp "$1" $2`
-        echo -n "$O" >>$REPORTFILE
-        shift 2
-    done
-    echo >>$REPORTFILE
-}
-
 testbeg() {
     local -r subtest=$1
     if [ ! -f $REPORTFILE ]; then
-        printline TEST $NAMELEN SUBTEST $NAMELEN SIZE $SIZELEN START $DATELEN END $DATELEN TIME/SEC $SECLEN
+        printreportline $REPORTFILE TEST $NAMELEN SUBTEST $NAMELEN SIZE $SIZELEN START $DATELEN END $DATELEN TIME/SEC $SECLEN
     fi 
     local -r BEG="$subtest,`getdate`,`getsec`"
     echo $BEG
@@ -107,7 +33,7 @@ testbeg() {
 
 testend() {
     IFS=',' read -r subtest begdate begsec <<<$@
-    printline $TESTNAME $NAMELEN $subtest $NAMELEN "`dir_isize`" $SIZELEN "$begdate" $DATELEN "`getdate`" $DATELEN "`calculatesec $begsec`" $SECLEN
+    printreportline $REPORTFILE $TESTNAME $NAMELEN $subtest $NAMELEN "`dir_isize`" $SIZELEN "$begdate" $DATELEN "`getdate`" $DATELEN "`calculatesec $begsec`" $SECLEN
 }
 
 markfailedtest() {
@@ -132,20 +58,6 @@ remove_tmpoutput1() {
 
 remove_tmp() {
   rmr_hdfs $TMPBASEDIR
-}
-
-required_var() {
-    local -r VARIABLE=$1
-    [ -z "${!VARIABLE}" ] && logfail "Need to set environment variable $VARIABLE"    
-}
-
-required_listofvars() {
-    while true; do
-        var=$1
-        [ -z "$var" ] && break
-        required_var $var
-        shift
-    done
 }
 
 required_par() {
@@ -178,11 +90,6 @@ verify_pars() {
   log_listofpars $@
 }  
 
-
-existfile() {
-    local -r FILENAME=$1
-    [ -f $FILENAME ] || logfail "$FILENAME does not exist"
-}
 
 existexefile() {
     local -r FILENAME=$1
@@ -246,8 +153,29 @@ getconfvar() {
     echo $res
 }
 
+# ============================
+# is
+# ============================
+
+nopig() {
+    if [ -z "$ISPIG" ]; then
+      log "Variable ISPIG not defined, ignore pig related test"
+      return 0
+    fi
+    return 1   
+}
+
+nosparksql() {
+    if [ -z "$ISSPARKSQL" ]; then
+      log "Variable ISSPARKSQL not defined, ignore spark-sql related test"
+      return 0
+    fi
+    return 1   
+}
+
+
 # ===========================
-# repeating spark
+# spark
 # ===========================
 
 prepare_sql() {

@@ -1,0 +1,19 @@
+BENCHSIZE=tiny
+
+#TESTLIST=wordcount
+#TESTLIST=terasort
+#TESTLIST=dsfio
+#TESTLIST=als
+#TESTLIST=bayes
+#TESTLIST=gbt
+#TESTLIST=lda
+#TESTLIST=linear
+#TESTLIST=lr
+#TESTLIST=pca
+#TESTLIST=rf
+#TESTLIST=svd
+#TESTLIST=svm
+#TESTLIST=sql
+TESTLIST=phoenix
+
+#HIVEAUTH="-n ambari-qa -p secret"

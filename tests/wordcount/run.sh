@@ -34,8 +34,13 @@ runhivewordcount() {
 }
 
 runpigwordcount() {
+
+  if nopig; then return; fi
+
   local -r TMP=`crtemp`
   local -r BEGTEST=`testbeg pigwordcount`
+  
+  required_command pig
 
   cat << EOF | cat >$TMP
 input_lines = LOAD '${TMPINPUTDIR}' AS (line:chararray);
@@ -50,28 +55,6 @@ EOF
   pigscript $TMP
   testend $BEGTEST
 
-}
-
-removeit_sparkwordcount() {
-  local -r TMP=`crtemp`
-  remove_tmpoutput
-  local -r BEGTEST=`testbeg sparkwordcount`
-
-  cat << EOF | cat >$TMP
-
-val infile="$TMPINPUTDIR"
-import org.apache.hadoop.io.Text
-import org.apache.hadoop.io.IntWritable
-
-val f=sc.sequenceFile(infile, classOf[Text],classOf[Text])
-val a = f.flatMap{case (x, y) => (x.toString.split(' ').union(y.toString.split(' '))).map(word=>(word,1))}
-val wc =  a.reduceByKey(_+_)
-wc.saveAsTextFile("$TMPOUTPUTDIR")
-
-EOF
-
-  sparkshell $TMP
-  testend $BEGTEST
 }
 
 sparkwordcount() {
@@ -90,6 +73,10 @@ sparkwordcount() {
 
 
 sparksqlwordcount() {
+
+  if nosparksql; then return; fi
+
+  required_command spark-sql
 
   local -r TMP=`crtemp`
   rmr_hdfs $TMPOUTPUTDIR
@@ -119,10 +106,11 @@ run() {
 }
 
 test() {
+  runpigwordcount
 #  randomtext
 #  wordcountmapreduce
 #  runhivewordcount
-  sparksqlwordcount
+#  sparksqlwordcount
 #  sparkwordcount
 #  sparksqlwordcount
 }
