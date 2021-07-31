@@ -57,7 +57,11 @@ As *hbase* user, create additional *bench* namespace<br>
 > hbase shell<br>
 > create_namespace 'bench'
 
-Give the user running MyBench test, the full authority in *SYSTEM.\** and *BENCH.\** namespace.
+Give the user running MyBench test, the full authority in *SYSTEM.\** and *BENCH.\** namespace.<br>
+
+Verify that user can create tables in *BENCH* namespace.
+
+> create table bench.x (x integer primary key);
 ### HBase, Phoenix client
 Make sure that client can connect to Hbase Phoenix using Zookeeper servers provided.<br>
  > /usr/hdp/current/phoenix-client/bin/sqlline.py  data3-worker.cloudga.com,data1-worker.cloudga.com,data2-worker.cloudga.com:2181/hbase-secure <br>
