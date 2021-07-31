@@ -34,6 +34,7 @@ The basic customization:<br>
 **HBase Phoenix**<br>
 * ZOOKEEPER variable: set ZOOKEEPER variable having the hostname of Zookeeper cluster. It is necessary to run HBase Phoenix command line tool.
 <br>
+
 > /usr/hdp/current/phoenix-client/bin//usr/hdp/current/phoenix-client $ZOOKEEPER /script file/<br>
 <br>
 
@@ -62,6 +63,7 @@ Give the user running MyBench test, the full authority in *SYSTEM.\** and *BENCH
 Verify that user can create tables in *BENCH* namespace.
 
 > create table bench.x (x integer primary key);
+
 ### HBase, Phoenix client
 Make sure that client can connect to Hbase Phoenix using Zookeeper servers provided.<br>
  > /usr/hdp/current/phoenix-client/bin/sqlline.py  data3-worker.cloudga.com,data1-worker.cloudga.com,data2-worker.cloudga.com:2181/hbase-secure <br>
