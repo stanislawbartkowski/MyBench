@@ -40,7 +40,11 @@ The basic customization:<br>
 
 * Increase "Phoenix Query Timeout" config parameters from default 1 minute. For instance: 10 minutes.
  
-## Privileges
+## Configuration
+
+### Yarn
+
+Adjust *yarn* parameters *yarn.nodemanager.resource.memory-mb* and *yarn.scheduler.maximum-allocation-mb*. Look at *conf/test.rc* memory requirement for Spark workload.
 
 ### HDFS
 The MyBench temporary HDFS space is determined by *TMPBASEDIR* variable, default is */tmp/bench*
